@@ -1059,6 +1059,32 @@
       padding-bottom: clamp(28px, 3vw, 48px)
     }
 
+    /* Care + Accessories: two square image tiles side by side */
+    .care-acc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(8px, 1vw, 16px)
+    }
+
+    .care-acc-grid .uni {
+      aspect-ratio: 1/1
+    }
+
+    /* small gap between New In and Care & Accessories */
+    .section.new-in {
+      padding-bottom: clamp(28px, 3vw, 48px)
+    }
+
+    .section.care-acc {
+      padding-top: 0
+    }
+
+    @media (max-width:720px) {
+      .care-acc-grid {
+        grid-template-columns: 1fr
+      }
+    }
+
     .section.uni-section {
       padding-top: clamp(28px, 3vw, 48px);
       padding-bottom: 0
@@ -3049,7 +3075,7 @@
     </section>
 
     <!-- ===== New in ===== -->
-    <section class="section wrap" style="padding-top:0" aria-labelledby="new-h">
+    <section class="section new-in wrap" style="padding-top:0" aria-labelledby="new-h">
       <div class="sec-head reveal">
         <p class="eyebrow">Just arrived</p>
         <h2 id="new-h" class="display">New In</h2>
@@ -3073,60 +3099,24 @@
       </div>
     </section>
 
-    <!-- ===== Care ===== -->
-    <section class="split" aria-labelledby="care-h">
-      <div class="split-media"><img loading="lazy" src="images/web/care-gift-suitcase.jpg"
-          alt="Elvor care case with baby lotion, shower gel, a soft brush, an embroidered towel and a knitted bunny"
-          style="object-position:35% center"></div>
-      <div class="split-copy reveal">
-        <p class="eyebrow">Care · Bath & Body</p>
-        <h2 id="care-h" class="display">Gentle rituals,<br><em>from the very first day</em></h2>
-        <p class="lede">A paediatrician-approved range inspired by Ayurvedic tradition — cold-pressed oils, soft balms
-          and tear-free washes, made without parabens, sulphates or synthetic colour.</p>
-        <div class="care-list">
-          <div class="care-item"><img loading="lazy"
-              src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?w=200&q=70&auto=format&fit=crop" alt="">
-            <div>
-              <h4>Almond & Ashwagandha Massage Oil</h4><small>100 ml · For daily malish</small>
-            </div><b>₹890</b>
+    <!-- ===== Care & Accessories ===== -->
+    <section class="section care-acc wrap" id="care-h" aria-label="Care and accessories">
+      <div class="care-acc-grid">
+        <a href="#" class="uni reveal"><img loading="lazy" src="images/web/care-gift-suitcase.jpg"
+            alt="Elvor care case with baby lotion, shower gel, a soft brush, an embroidered towel and a knitted bunny"
+            style="object-position:35% center">
+          <div class="uni-copy">
+            <h3>Care</h3>
+            <p>Bath &amp; body</p>
           </div>
-          <div class="care-item"><img loading="lazy"
-              src="https://images.unsplash.com/photo-1510154221590-ff63e90a136f?w=200&q=70&auto=format&fit=crop" alt="">
-            <div>
-              <h4>Shea & Calendula Nourishing Balm</h4><small>50 g · Dry & delicate skin</small>
-            </div><b>₹740</b>
+        </a>
+        <a href="#" class="uni reveal"><img loading="lazy" src="images/web/accessories-beanie-knitwear.jpg"
+            alt="Knitted blanket, beanie, socks and mittens hanging on a washing line">
+          <div class="uni-copy">
+            <h3>Accessories</h3>
+            <p>Knitwear &amp; essentials</p>
           </div>
-          <div class="care-item"><img loading="lazy"
-              src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?w=200&q=70&auto=format&fit=crop" alt="">
-            <div>
-              <h4>Tear-free Oat Wash & Shampoo</h4><small>200 ml · Head to toe</small>
-            </div><b>₹650</b>
-          </div>
-        </div>
-        <div><a href="#" class="btn btn-dark">Shop Care</a></div>
-      </div>
-    </section>
-
-    <!-- ===== Story ===== -->
-    <section class="section wrap" aria-labelledby="story-h">
-      <div class="story">
-        <div class="story-media reveal"><img loading="lazy"
-            src="https://images.unsplash.com/photo-1476234251651-f353703a034d?w=1200&q=80&auto=format&fit=crop"
-            alt="Two children reading a book in golden light"></div>
-        <div class="story-copy reveal">
-          <p class="eyebrow">The House of Elvor</p>
-          <h2 id="story-h" class="display">Made in India,<br><em>made to be handed down</em></h2>
-          <p>Every Elvor piece begins with GOTS-certified organic cotton grown in Madhya Pradesh, woven and
-            hand-finished by artisan clusters in Tiruppur and Jaipur.</p>
-          <p>We design for Indian seasons — breathable muslins for summer, soft merino for the north's winters — in
-            timeless silhouettes meant to be loved by one child, then the next.</p>
-          <div class="stats">
-            <div><b>100%</b><small>Organic cotton</small></div>
-            <div><b>240+</b><small>Artisans</small></div>
-            <div><b>0</b><small>Azo dyes</small></div>
-          </div>
-          <a href="#" class="link-u">Our story</a>
-        </div>
+        </a>
       </div>
     </section>
 
