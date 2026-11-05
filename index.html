@@ -1053,26 +1053,127 @@
     }
 
     /* ---------- gifts ---------- */
-    .gifts {
-      background: var(--sand)
+    /* gifts follow the New Born banner directly, same gap as the tiles */
+    .section.gifts {
+      padding-top: clamp(8px, 1vw, 16px);
+      padding-bottom: clamp(28px, 3vw, 48px)
     }
 
+    .section.uni-section {
+      padding-top: clamp(28px, 3vw, 48px);
+      padding-bottom: 0
+    }
+
+    /* gift image full width on top, finder + mini tiles side by side below */
     .gift-layout {
       display: grid;
-      grid-template-columns: 1.25fr 1fr;
+      grid-template-columns: 1fr;
       gap: clamp(16px, 2vw, 32px);
       align-items: stretch
     }
 
     .gift-hero {
+      position: relative
+    }
+
+    .gift-hero-media {
       position: relative;
       overflow: hidden;
-      min-height: 540px;
+      aspect-ratio: 2/1;
       display: block;
       background: #efe4d2
     }
 
-    .gift-hero img {
+    /* "Find the perfect present" laid over the left side of the gift image, transparent */
+    .gift-finder {
+      position: absolute;
+      z-index: 1;
+      left: 3%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: clamp(220px, 22%, 340px)
+    }
+
+    .gift-finder h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: clamp(22px, 2vw, 32px);
+      line-height: 1.1;
+      margin-bottom: 18px;
+      color: var(--ink)
+    }
+
+    .gift-finder ul {
+      display: grid;
+      gap: 10px
+    }
+
+    .gift-finder a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: transparent;
+      border: 1px solid rgba(26, 26, 26, .45);
+      padding: 14px 16px;
+      font-size: 14px;
+      color: var(--ink);
+      transition: border-color .2s, background .2s
+    }
+
+    .gift-finder a:hover {
+      border-color: var(--ink);
+      background: rgba(255, 255, 255, .35)
+    }
+
+    .gift-finder a span {
+      font-size: 18px;
+      line-height: 1
+    }
+
+    /* white text while the finder sits on the photo; soft shade on the left keeps it readable */
+    @media (min-width:1025px) {
+      .gift-hero-media::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(40, 28, 18, .45) 0, rgba(40, 28, 18, .18) 24%, rgba(40, 28, 18, 0) 34%);
+        pointer-events: none
+      }
+
+      .gift-finder h3,
+      .gift-finder a {
+        color: #fff;
+        text-shadow: 0 1px 8px rgba(0, 0, 0, .3)
+      }
+
+      .gift-finder a {
+        border-color: rgba(255, 255, 255, .7)
+      }
+
+      .gift-finder a:hover {
+        border-color: #fff;
+        background: rgba(255, 255, 255, .15)
+      }
+    }
+
+    @media (max-width:1024px) {
+      .gift-finder {
+        position: static;
+        transform: none;
+        width: auto;
+        padding-top: 24px
+      }
+
+      .gift-finder ul {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .gift-finder a {
+        border-color: var(--line)
+      }
+    }
+
+    .gift-hero-media img {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -1082,14 +1183,15 @@
       transition: transform 1.6s var(--ease)
     }
 
-    .gift-hero:hover img {
+    .gift-hero-media:hover img {
       transform: scale(1.03)
     }
 
     .gift-tag {
       position: absolute;
+      z-index: 1;
       left: 20px;
-      bottom: 20px;
+      top: 20px;
       background: rgba(255, 255, 255, .94);
       padding: 10px 16px;
       font-size: 10.5px;
@@ -1112,12 +1214,6 @@
     .price-finder h3 {
       font-size: 24px !important;
       margin: 0 0 16px !important
-    }
-
-    .gift-side {
-      display: grid;
-      grid-template-rows: auto 1fr;
-      gap: clamp(16px, 2vw, 32px)
     }
 
     .price-finder {
@@ -2498,14 +2594,14 @@
       }
 
       /* gifts */
-      .gift-hero {
+      .gift-hero-media {
         min-height: 0;
-        aspect-ratio: 1394/981
+        aspect-ratio: 2/1
       }
 
       .gift-tag {
         left: 12px;
-        bottom: 12px;
+        top: 12px;
         font-size: 9.5px;
         padding: 8px 12px
       }
@@ -2771,7 +2867,7 @@
       .card:hover .card-media img,
       .uni:hover img,
       .acc:hover img,
-      .gift-hero:hover img,
+      .gift-hero-media:hover img,
       .gift-mini a:hover img,
       .insta-grid a:hover img {
         transform: none;
@@ -2886,33 +2982,15 @@
             <a href="#" class="btn btn-light">New Born</a>
             <a href="#" class="btn btn-light">Girl</a>
             <a href="#" class="btn btn-light">Boy</a>
-            <a href="#acc-h" class="btn btn-light">Care &amp; Accessories</a>
+            <a href="#care-h" class="btn btn-light">Care &amp; Accessories</a>
             <a href="#gifts" class="btn btn-light">Gift</a>
           </nav>
         </div>
       </div>
     </section>
 
-    <!-- ===== Trust bar ===== -->
-    <section class="trust" aria-label="Our promise">
-      <ul class="wrap">
-        <li><svg>
-            <use href="#i-truck" />
-          </svg>Free shipping above ₹1,999</li>
-        <li><svg>
-            <use href="#i-return" />
-          </svg>15-day easy returns & COD</li>
-        <li><svg>
-            <use href="#i-leaf" />
-          </svg>GOTS certified organic cotton</li>
-        <li><svg>
-            <use href="#i-gift" />
-          </svg>Complimentary gift wrapping</li>
-      </ul>
-    </section>
-
     <!-- ===== Universes: Boy / Girl / Elvor Special Edition ===== -->
-    <section class="section wrap" aria-labelledby="uni-h">
+    <section class="section uni-section wrap" aria-labelledby="uni-h">
       <div class="sec-head reveal">
         <p class="eyebrow">The Universes</p>
         <h2 id="uni-h" class="display">Dressed for every little <em>moment</em></h2>
@@ -2950,33 +3028,21 @@
     </section>
 
     <!-- ===== Gifts ===== -->
-    <section class="section gifts wrap" id="gifts" aria-labelledby="gift-h">
+    <section class="section gifts wrap" id="gifts" aria-label="Gifts">
       <div class="gift-layout">
-        <a href="#" class="gift-hero reveal" aria-label="Shop the Elvor keepsake gift case">
-          <img loading="lazy" src="images/web/gift-suitcase-set.jpg"
-            alt="Elvor luxury gift set in a cream monogrammed case with knitwear, muslins, fragrance and a baby brush">
-          <span class="gift-tag">The Keepsake Case · ₹8,990</span>
-        </a>
-        <div class="gift-side">
-          <div class="price-finder reveal">
-            <p class="eyebrow">Gifts</p>
-            <h2 id="gift-h" class="display gift-title">Birth gifts & <em>festive hampers</em></h2>
-            <p class="gift-lede">Curated sets in our signature keepsake case, with a handwritten note and complimentary
-              wrapping. Same-day dispatch in Mumbai, Delhi NCR & Bengaluru.</p>
+        <div class="gift-hero reveal">
+          <a href="#" class="gift-hero-media" aria-label="Shop the Elvor keepsake gift case">
+            <img loading="lazy" src="images/web/gift-art-of-gifting.jpg"
+              alt="The art of gifting: Elvor gift case with knitwear, embroidered muslins, fragrance and a baby brush">
+            <span class="gift-tag">The Keepsake Case · ₹8,990</span>
+          </a>
+          <div class="gift-finder">
             <h3>Find the perfect present</h3>
             <ul>
               <li><a href="#">Under ₹1,499 <span>›</span></a></li>
               <li><a href="#">₹1,500 – ₹2,999 <span>›</span></a></li>
               <li><a href="#">Luxury hampers <span>›</span></a></li>
             </ul>
-          </div>
-          <div class="gift-mini reveal">
-            <a href="#"><img loading="lazy"
-                src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=800&q=80&auto=format&fit=crop"
-                alt="Wrapped presents"><span>Festive Hampers</span></a>
-            <a href="#"><img loading="lazy"
-                src="https://images.unsplash.com/photo-1535572290543-960a8046f5af?w=800&q=80&auto=format&fit=crop"
-                alt="Wooden alphabet blocks"><span>E-Gift Cards</span></a>
           </div>
         </div>
       </div>
@@ -3009,9 +3075,9 @@
 
     <!-- ===== Care ===== -->
     <section class="split" aria-labelledby="care-h">
-      <div class="split-media"><img loading="lazy"
-          src="https://images.unsplash.com/photo-1533483595632-c5f0e57a1936?w=1600&q=80&auto=format&fit=crop"
-          alt="Smiling newborn lying on soft white sheets"></div>
+      <div class="split-media"><img loading="lazy" src="images/web/care-gift-suitcase.jpg"
+          alt="Elvor care case with baby lotion, shower gel, a soft brush, an embroidered towel and a knitted bunny"
+          style="object-position:35% center"></div>
       <div class="split-copy reveal">
         <p class="eyebrow">Care · Bath & Body</p>
         <h2 id="care-h" class="display">Gentle rituals,<br><em>from the very first day</em></h2>
@@ -3038,45 +3104,6 @@
           </div>
         </div>
         <div><a href="#" class="btn btn-dark">Shop Care</a></div>
-      </div>
-    </section>
-
-    <!-- ===== Accessories ===== -->
-    <section class="section wrap" aria-labelledby="acc-h">
-      <div class="sec-head reveal">
-        <p class="eyebrow">Accessories</p>
-        <h2 id="acc-h" class="display">The finishing <em>touches</em></h2>
-        <p>Bonnets, bows and keepsakes — small details that make the outfit.</p>
-      </div>
-      <div class="acc-grid">
-        <a href="#" class="acc reveal">
-          <div class="ph"><img loading="lazy"
-              src="https://images.unsplash.com/photo-1546015720-b8b30df5aa27?w=700&q=80&auto=format&fit=crop"
-              alt="Knitted bear bonnet" style="object-position:30% center"></div>
-          <h3>Hats & Bonnets</h3>
-          <p>From ₹690</p>
-        </a>
-        <a href="#" class="acc reveal">
-          <div class="ph"><img loading="lazy"
-              src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=700&q=80&auto=format&fit=crop"
-              alt="Girl with a yellow hair bow"></div>
-          <h3>Hair Accessories</h3>
-          <p>From ₹390</p>
-        </a>
-        <a href="#" class="acc reveal">
-          <div class="ph"><img loading="lazy"
-              src="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=700&q=80&auto=format&fit=crop"
-              alt="Flat lay of a white tee, teddy bear and knitted beanie"></div>
-          <h3>Soft Toys & Keepsakes</h3>
-          <p>From ₹990</p>
-        </a>
-        <a href="#" class="acc reveal">
-          <div class="ph"><img loading="lazy"
-              src="https://images.unsplash.com/photo-1544126592-807ade215a0b?w=700&q=80&auto=format&fit=crop"
-              alt="Sleeping baby wrapped in a soft blanket"></div>
-          <h3>Blankets & Swaddles</h3>
-          <p>From ₹1,290</p>
-        </a>
       </div>
     </section>
 
@@ -3178,33 +3205,6 @@
           <h4>Made in India</h4>
           <p>Responsibly crafted by Indian artisans</p>
         </div>
-      </div>
-    </section>
-
-    <!-- ===== Instagram ===== -->
-    <section class="section" style="padding-bottom:0" aria-labelledby="ig-h">
-      <div class="sec-head wrap reveal">
-        <p class="eyebrow">@elvor.kids</p>
-        <h2 id="ig-h" class="display">#GrowingUpElvor</h2>
-      </div>
-      <div class="insta-grid">
-        <a href="#" aria-label="Instagram post"><img loading="lazy"
-            src="https://images.unsplash.com/photo-1471286174890-9c112ffca5b4?w=500&q=70&auto=format&fit=crop"
-            alt=""></a>
-        <a href="#" aria-label="Instagram post"><img loading="lazy"
-            src="https://images.unsplash.com/photo-1617331140180-e8262094733a?w=500&q=70&auto=format&fit=crop"
-            alt=""></a>
-        <a href="#" aria-label="Instagram post"><img loading="lazy"
-            src="https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=500&q=70&auto=format&fit=crop" alt=""></a>
-        <a href="#" aria-label="Instagram post"><img loading="lazy"
-            src="https://images.unsplash.com/photo-1484665754804-74b091211472?w=500&q=70&auto=format&fit=crop"
-            alt=""></a>
-        <a href="#" aria-label="Instagram post"><img loading="lazy"
-            src="https://images.unsplash.com/photo-1514090458221-65bb69cf63e6?w=500&q=70&auto=format&fit=crop"
-            alt=""></a>
-        <a href="#" aria-label="Instagram post"><img loading="lazy"
-            src="https://images.unsplash.com/photo-1526634332515-d56c5fd16991?w=500&q=70&auto=format&fit=crop"
-            alt=""></a>
       </div>
     </section>
 
