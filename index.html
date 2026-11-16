@@ -539,6 +539,21 @@
       color: rgba(255, 255, 255, .9)
     }
 
+    /* whole hero image is a link; the copy lets clicks through except on its own links */
+    .slide-link {
+      position: absolute;
+      inset: 0;
+      z-index: 1
+    }
+
+    .slide-copy {
+      pointer-events: none
+    }
+
+    .slide-copy a {
+      pointer-events: auto
+    }
+
     .slide-copy h1,
     .slide-copy h2 {
       font-size: clamp(36px, 4.6vw, 68px);
@@ -3002,14 +3017,15 @@
         <div class="media"><img src="images/web/hero-festive-staircase.jpg"
             alt="Five children in Elvor festive wear by a grand staircase and piano" style="object-position:48% 30%">
         </div>
+        <a href="collection.html?c=special" class="slide-link" aria-label="Shop the Elvor Special Edition"></a>
         <div class="slide-copy">
           <h1 class="display">Elvor <em>special edition</em></h1>
           <nav class="ctas" aria-label="Shop by category">
-            <a href="#" class="btn btn-light">New Born</a>
-            <a href="#" class="btn btn-light">Girl</a>
-            <a href="#" class="btn btn-light">Boy</a>
+            <a href="collection.html?c=newborn" class="btn btn-light">New Born</a>
+            <a href="collection.html?c=girl" class="btn btn-light">Girl</a>
+            <a href="collection.html?c=boy" class="btn btn-light">Boy</a>
             <a href="#care-h" class="btn btn-light">Care &amp; Accessories</a>
-            <a href="#gifts" class="btn btn-light">Gift</a>
+            <a href="collection.html?c=gifts" class="btn btn-light">Gift</a>
           </nav>
         </div>
       </div>
@@ -3022,14 +3038,14 @@
         <h2 id="uni-h" class="display">Dressed for every little <em>moment</em></h2>
       </div>
       <div class="universes">
-        <a href="#" class="uni reveal"><img loading="lazy" src="images/web/boy-blue-navy.jpg"
+        <a href="collection.html?c=boy" class="uni reveal"><img loading="lazy" src="images/web/boy-blue-navy.jpg"
             alt="Boy in a light blue oxford shirt and navy corduroy trousers" style="object-position:center 20%">
           <div class="uni-copy">
             <h3>Boy</h3>
             <p>1 – 6 years</p>
           </div>
         </a>
-        <a href="#" class="uni reveal"><img loading="lazy" src="images/web/girl-velvet-portrait.jpg"
+        <a href="collection.html?c=girl" class="uni reveal"><img loading="lazy" src="images/web/girl-velvet-portrait.jpg"
             alt="Girl in a black velvet dress with a lace collar by a farmhouse stone wall"
             style="object-position:52% center">
           <div class="uni-copy">
@@ -3037,7 +3053,7 @@
             <p>1 – 6 years</p>
           </div>
         </a>
-        <a href="#" class="uni reveal"><img loading="lazy" src="images/web/boy-red-panda-sweater.jpg"
+        <a href="collection.html?c=special" class="uni reveal"><img loading="lazy" src="images/web/boy-red-panda-sweater.jpg"
             alt="Cream knit sweater with an embroidered red panda in a varsity jacket">
           <div class="uni-copy">
             <h3>Elvor Special Edition</h3>
@@ -3045,7 +3061,7 @@
           </div>
         </a>
       </div>
-      <a href="#" class="uni uni-wide reveal"><img loading="lazy" src="images/web/newborn-toddlers-playing.jpg"
+      <a href="collection.html?c=newborn" class="uni uni-wide reveal"><img loading="lazy" src="images/web/newborn-toddlers-playing.jpg"
           alt="Three toddlers laughing and playing with wooden toys on a rug" style="object-position:center 65%">
         <div class="uni-copy">
           <h3>New Born</h3>
@@ -3058,7 +3074,7 @@
     <section class="section gifts wrap" id="gifts" aria-label="Gifts">
       <div class="gift-layout">
         <div class="gift-hero reveal">
-          <a href="#" class="gift-hero-media" aria-label="Shop the Elvor keepsake gift case">
+          <a href="collection.html?c=gifts" class="gift-hero-media" aria-label="Shop the Elvor keepsake gift case">
             <img loading="lazy" src="images/web/gift-art-of-gifting.jpg"
               alt="The art of gifting: Elvor gift case with knitwear, embroidered muslins, fragrance and a baby brush">
             <span class="gift-tag">The Keepsake Case · ₹8,990</span>
@@ -3066,9 +3082,9 @@
           <div class="gift-finder">
             <h3>Find the perfect present</h3>
             <ul>
-              <li><a href="#">Under ₹1,499 <span>›</span></a></li>
-              <li><a href="#">₹1,500 – ₹2,999 <span>›</span></a></li>
-              <li><a href="#">Luxury hampers <span>›</span></a></li>
+              <li><a href="collection.html?c=gifts&amp;price=0-1499">Under ₹1,499 <span>›</span></a></li>
+              <li><a href="collection.html?c=gifts&amp;price=1500-2999">₹1,500 – ₹2,999 <span>›</span></a></li>
+              <li><a href="collection.html?c=gifts&amp;sub=Luxury%20Hampers">Luxury hampers <span>›</span></a></li>
             </ul>
           </div>
         </div>
@@ -3103,7 +3119,7 @@
     <!-- ===== Care & Accessories ===== -->
     <section class="section care-acc wrap" id="care-h" aria-label="Care and accessories">
       <div class="care-acc-grid">
-        <a href="#" class="uni reveal"><img loading="lazy" src="images/web/care-gift-suitcase.jpg"
+        <a href="collection.html?c=care" class="uni reveal"><img loading="lazy" src="images/web/care-gift-suitcase.jpg"
             alt="Elvor care case with baby lotion, shower gel, a soft brush, an embroidered towel and a knitted bunny"
             style="object-position:35% center">
           <div class="uni-copy">
@@ -3111,7 +3127,7 @@
             <p>Bath &amp; body</p>
           </div>
         </a>
-        <a href="#" class="uni reveal"><img loading="lazy" src="images/web/accessories-beanie-knitwear.jpg"
+        <a href="collection.html?c=accessories" class="uni reveal"><img loading="lazy" src="images/web/accessories-beanie-knitwear.jpg"
             alt="Knitted blanket, beanie, socks and mittens hanging on a washing line">
           <div class="uni-copy">
             <h3>Accessories</h3>
@@ -3404,37 +3420,37 @@
 
     const MENU = [
       {
-        name: 'New Born', img: 'images/web/newborn-smocked-romper.jpg', feat: 'Hand-smocked heirlooms', cols: [
+        k: 'newborn', name: 'New Born', img: 'images/web/newborn-smocked-romper.jpg', feat: 'Hand-smocked heirlooms', cols: [
           ['Clothing', ['Bodysuits & Rompers', 'Sleepsuits', 'Jhablas & Kurtas', 'Knitwear', 'Outfit Sets']],
           ['Essentials', ['Muslin Swaddles', 'Blankets', 'Bibs & Burp Cloths', 'Mittens & Booties']],
           ['By age', ['0 – 3 months', '3 – 6 months', '6 – 12 months', '12 – 24 months']]]
       },
       {
-        name: 'Girl', img: '1578897367107-2828e351c8a8', feat: 'Festive dresses', cols: [
+        k: 'girl', name: 'Girl', img: '1578897367107-2828e351c8a8', feat: 'Festive dresses', cols: [
           ['Clothing', ['Dresses & Frocks', 'Lehengas & Ethnic', 'Tops & Blouses', 'Skirts & Shorts', 'Co-ord Sets', 'Nightwear']],
           ['Collections', ['The Festive Edit', 'Summer Muslins', 'Party Wear', 'Everyday Essentials']],
           ['By age', ['2 – 4 years', '4 – 8 years', '8 – 12 years', '12 – 14 years']]]
       },
       {
-        name: 'Boy', img: 'images/web/boy-red-panda-sweater.jpg', feat: 'The red panda sweater', cols: [
+        k: 'boy', name: 'Boy', img: 'images/web/boy-red-panda-sweater.jpg', feat: 'The red panda sweater', cols: [
           ['Clothing', ['Shirts', 'T-shirts & Polos', 'Kurta Sets', 'Shorts & Trousers', 'Knitwear', 'Nightwear']],
           ['Collections', ['The Festive Edit', 'Summer Linens', 'Occasion Wear', 'Everyday Essentials']],
           ['By age', ['2 – 4 years', '4 – 8 years', '8 – 12 years', '12 – 14 years']]]
       },
       {
-        name: 'Care', img: '1533483595632-c5f0e57a1936', feat: 'Gentle rituals', cols: [
+        k: 'care', name: 'Care', img: '1533483595632-c5f0e57a1936', feat: 'Gentle rituals', cols: [
           ['Bath & Body', ['Massage Oils', 'Lotions & Balms', 'Wash & Shampoo', 'Nappy Care']],
           ['Fragrance', ['Eau de Soin', 'Scented Mist', 'Home Fragrance']],
           ['Sets', ['Care Gift Sets', 'Travel Minis', 'New Mother Kit']]]
       },
       {
-        name: 'Accessories', img: '1622290291468-a28f7a7dc6a8', feat: 'Finishing touches', cols: [
+        k: 'accessories', name: 'Accessories', img: '1622290291468-a28f7a7dc6a8', feat: 'Finishing touches', cols: [
           ['Wear', ['Hats & Bonnets', 'Hair Accessories', 'Socks & Tights', 'Footwear']],
           ['Carry', ['Diaper Bags', 'Backpacks', 'Pouches']],
           ['Play & Sleep', ['Soft Toys', 'Blankets', 'Keepsakes']]]
       },
       {
-        name: 'Gifts', gift: true, img: 'images/web/gift-suitcase-set.jpg', feat: 'The keepsake case', cols: [
+        k: 'gifts', name: 'Gifts', gift: true, img: 'images/web/gift-suitcase-set.jpg', feat: 'The keepsake case', cols: [
           ['Occasions', ['Birth Gifts', 'Naming Ceremony', 'Birthday', 'Diwali Hampers']],
           ['By price', ['Under ₹1,999', '₹2,000 – ₹3,999', '₹4,000 – ₹5,999', 'Luxury Hampers']],
           ['Services', ['E-Gift Cards', 'Gift Wrapping', 'Personalisation']]]
@@ -3456,13 +3472,24 @@
 
     /* ---------- header nav + mega menu ---------- */
     const nav = document.getElementById('nav'), mnav = document.getElementById('mnav');
+    /* menu item → collection URL (sub-category, age band, price band or edit) — same as collection.html */
+    const MENU_PRICE = { 'Under ₹1,999': '0-1999', '₹2,000 – ₹3,999': '2000-3999', '₹4,000 – ₹5,999': '4000-5999', 'Luxury Hampers': '6000-' };
+    function menuLink(k, item, group) {
+      const u = new URLSearchParams({ c: k });
+      if (!item) return 'collection.html?' + u;
+      if (item === 'The Festive Edit') return 'collection.html?c=special';
+      if (group === 'By age') u.set('size', item.replace(' – ', '–').replace(' years', 'Y').replace(' months', 'M'));
+      else if (group === 'By price') u.set('price', MENU_PRICE[item] || '');
+      else u.set('sub', item);
+      return 'collection.html?' + u;
+    }
     MENU.forEach(m => {
-      const cols = m.cols.map(([h, items]) => `<div><h4>${h}</h4><ul>${items.map(i => `<li><a href="#">${i}</a></li>`).join('')}</ul></div>`).join('');
-      nav.insertAdjacentHTML('beforeend', `<li><a href="#" class="nav-link${m.gift ? ' gift' : ''}">${m.name}</a>
-    <div class="mega"><div class="mega-inner">${cols}<a href="#" class="mega-feature"><img loading="lazy" src="${IMG(m.img, 700)}" alt=""><span>${m.feat}</span></a></div></div></li>`);
-      const sub = m.cols.map(([h, items]) => `<h5>${h}</h5><ul>${items.map(i => `<li><a href="#">${i}</a></li>`).join('')}</ul>`).join('');
+      const cols = m.cols.map(([h, items]) => `<div><h4>${h}</h4><ul>${items.map(i => `<li><a href="${menuLink(m.k, i, h)}">${i}</a></li>`).join('')}</ul></div>`).join('');
+      nav.insertAdjacentHTML('beforeend', `<li><a href="${menuLink(m.k)}" class="nav-link${m.gift ? ' gift' : ''}">${m.name}</a>
+    <div class="mega"><div class="mega-inner">${cols}<a href="${menuLink(m.k)}" class="mega-feature"><img loading="lazy" src="${IMG(m.img, 700)}" alt=""><span>${m.feat}</span></a></div></div></li>`);
+      const sub = m.cols.map(([h, items]) => `<h5>${h}</h5><ul>${items.map(i => `<li><a href="${menuLink(m.k, i, h)}">${i}</a></li>`).join('')}</ul>`).join('');
       mnav.insertAdjacentHTML('beforeend', `<li><button class="${m.gift ? 'gift' : ''}" aria-expanded="false">${m.name}<svg><use href="#i-right"/></svg></button>
-    <div class="m-sub"><div>${sub}<a href="#" class="m-all">Shop all ${m.name}</a></div></div></li>`);
+    <div class="m-sub"><div>${sub}<a href="${menuLink(m.k)}" class="m-all">Shop all ${m.name}</a></div></div></li>`);
     });
     mnav.addEventListener('click', e => {
       const b = e.target.closest('li > button'); if (!b) return;
