@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en-IN">
 
 <head>
@@ -861,6 +861,13 @@
     .card-info {
       padding: 16px 2px 0;
       text-align: center
+    }
+
+    /* whole image opens the product page; badge, wishlist and quick-add sit above it */
+    .card-link {
+      position: absolute;
+      inset: 0;
+      z-index: 1
     }
 
     .card-info h3 {
@@ -3469,6 +3476,8 @@
     ];
 
     const inr = n => '₹' + n.toLocaleString('en-IN');
+    const slug = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const PDP = p => 'product.html?p=' + slug(p.n);
 
     /* ---------- header nav + mega menu ---------- */
     const nav = document.getElementById('nav'), mnav = document.getElementById('mnav');
@@ -3520,10 +3529,11 @@
         <button class="wish" aria-label="Add to wishlist"><svg><use href="#i-heart"/></svg></button>
         <img loading="lazy" src="${IMG(p.img, 700)}" alt="${p.n}">
         <img loading="lazy" class="alt" src="${IMG(p.alt, 700)}" alt="">
+        <a class="card-link" href="${PDP(p)}" tabindex="-1" aria-hidden="true"></a>
         <button class="quick" data-add="${i}">Add to bag</button>
       </div>
       <div class="card-info">
-        <h3>${p.n}</h3><p class="meta">${p.m}</p><p class="price">${inr(p.p)}</p>
+        <h3><a href="${PDP(p)}">${p.n}</a></h3><p class="meta">${p.m}</p><p class="price">${inr(p.p)}</p>
         <div class="swatches">${p.sw.map(c => `<i style="background:${c}"></i>`).join('')}</div>
       </div>
     </article>`).join('');
@@ -3613,7 +3623,7 @@
     function renderSearch(q = '') {
       const list = q ? PRODUCTS.filter(p => (p.n + p.m + p.c).toLowerCase().includes(q.toLowerCase())) : PRODUCTS.slice(0, 4);
       srTitle.textContent = q ? `${list.length} result${list.length === 1 ? '' : 's'} for “${q}”` : 'Trending now';
-      sr.innerHTML = list.slice(0, 4).map(p => `<a href="#"><img src="${IMG(p.img, 300)}" alt=""><span>${p.n}</span><small>${inr(p.p)}</small></a>`).join('') || '<p style="color:var(--muted)">No matches — try “romper” or “dress”.</p>';
+      sr.innerHTML = list.slice(0, 4).map(p => `<a href="${PDP(p)}"><img src="${IMG(p.img, 300)}" alt=""><span>${p.n}</span><small>${inr(p.p)}</small></a>`).join('') || '<p style="color:var(--muted)">No matches — try “romper” or “dress”.</p>';
     }
     renderSearch();
     document.getElementById('searchInput').addEventListener('input', e => renderSearch(e.target.value.trim()));

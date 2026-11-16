@@ -3177,6 +3177,19 @@
       background: var(--cream)
     }
 
+    /* whole image opens the product page; badge, wishlist and quick-add sit above it */
+    .card-link {
+      position: absolute;
+      inset: 0;
+      z-index: 1
+    }
+
+    .card-info h3 a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px
+    }
+
     .plp-grid.large .card-info h3 {
       font-size: 24px
     }
@@ -3985,6 +3998,8 @@
     ];
 
     const inr = n => '₹' + n.toLocaleString('en-IN');
+    const slug = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const PDP = p => 'product.html?p=' + slug(p.n);
 
     /* ---------- header nav + mega menu ---------- */
     const nav = document.getElementById('nav'), mnav = document.getElementById('mnav');
@@ -4111,10 +4126,11 @@
         <button class="wish" aria-label="Add ${p.n} to wishlist"><svg><use href="#i-heart"/></svg></button>
         <img loading="lazy" src="${IMG(p.img, 800)}" alt="${p.n}">
         <img loading="lazy" class="alt" src="${IMG(p.alt, 800)}" alt="">
+        <a class="card-link" href="${PDP(p)}" tabindex="-1" aria-hidden="true"></a>
         <button class="quick" data-add="${i}">Add to bag</button>
       </div>
       <div class="card-info">
-        <h3>${p.n}</h3><p class="meta">${p.m}</p><p class="price">${inr(p.p)}</p>
+        <h3><a href="${PDP(p)}">${p.n}</a></h3><p class="meta">${p.m}</p><p class="price">${inr(p.p)}</p>
         ${p.sw.length ? `<div class="swatches">${p.sw.map(c => `<i style="background:${COLORS[c]}" title="${c}"></i>`).join('')}</div>` : ''}
       </div>
     </article>`;
@@ -4226,9 +4242,10 @@
       if (rm) cart.splice(rm.dataset.rm, 1);
       renderCart();
     });
-    function addToBag(i) {
-      const ex = cart.find(c => c.i === i);
-      ex ? ex.q++ : cart.push({ i, q: 1, size: PRODUCTS[i].c === 'newborn' ? '3–6M' : '4Y' });
+    function addToBag(i, size) {
+      size = size || (PRODUCTS[i].c === 'newborn' ? '3–6M' : '4Y');
+      const ex = cart.find(c => c.i === i && c.size === size);
+      ex ? ex.q++ : cart.push({ i, q: 1, size });
       renderCart();
       const cc = document.getElementById('cartCount'); cc.classList.add('bump'); setTimeout(() => cc.classList.remove('bump'), 300);
       toast(`${PRODUCTS[i].n} added to your bag`);
@@ -4273,7 +4290,7 @@
     function renderSearch(q = '') {
       const list = q ? PRODUCTS.filter(p => (p.n + p.m + p.c).toLowerCase().includes(q.toLowerCase())) : PRODUCTS.slice(0, 4);
       srTitle.textContent = q ? `${list.length} result${list.length === 1 ? '' : 's'} for “${q}”` : 'Trending now';
-      sr.innerHTML = list.slice(0, 4).map(p => `<a href="#"><img src="${IMG(p.img, 300)}" alt=""><span>${p.n}</span><small>${inr(p.p)}</small></a>`).join('') || '<p style="color:var(--muted)">No matches — try “romper” or “dress”.</p>';
+      sr.innerHTML = list.slice(0, 4).map(p => `<a href="${PDP(p)}"><img src="${IMG(p.img, 300)}" alt=""><span>${p.n}</span><small>${inr(p.p)}</small></a>`).join('') || '<p style="color:var(--muted)">No matches — try “romper” or “dress”.</p>';
     }
     renderSearch();
     document.getElementById('searchInput').addEventListener('input', e => renderSearch(e.target.value.trim()));
