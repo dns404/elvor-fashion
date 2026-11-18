@@ -2926,6 +2926,45 @@
         transform: none
       }
     }
+
+    /* ---------- full-bleed image blocks (Bonpoint-style: no side gutters, no gaps between tiles) ---------- */
+    .uni-section.wrap,
+    .gifts.wrap,
+    .care-acc.wrap {
+      padding-inline: 0
+    }
+
+    .uni-section .sec-head {
+      padding-inline: var(--gutter)
+    }
+
+    .universes,
+    .care-acc-grid {
+      gap: 3px
+    }
+
+    .uni.uni-wide {
+      margin-top: 3px
+    }
+
+    .section.gifts {
+      padding-top: 3px
+    }
+
+    @media (max-width:1024px) {
+      .gift-finder {
+        padding-inline: var(--gutter)
+      }
+    }
+
+    @media (max-width:720px) {
+      .universes {
+        gap: 3px;
+        margin-inline: 0;
+        padding-inline: 0;
+        scroll-padding-inline: 0
+      }
+    }
   </style>
 </head>
 
