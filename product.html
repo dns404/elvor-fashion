@@ -3796,6 +3796,164 @@
       }
     }
 
+
+    /* ---------- full-screen image viewer ----------
+       grey stage, image at full height, large round arrows, close top-right,
+       thumbnail strip bottom-right with the selected image highlighted,
+       and the page's buy bar pinned along the bottom (desktop) */
+    .pdp-zoom {
+      inset: 0 0 var(--zoom-bar, 0px) 0;
+      background: #f2f2f2;
+      overflow: hidden
+    }
+
+    .pdp-zoom img#zoomImg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      max-height: none;
+      object-fit: contain
+    }
+
+    .pdp-zoom .pdp-zoom-nav {
+      width: clamp(64px, 7vw, 136px);
+      height: clamp(64px, 7vw, 136px);
+      background: transparent;
+      border: 2px solid #777;
+      border-radius: 50%;
+      transition: border-color .2s, background .2s
+    }
+
+    .pdp-zoom .pdp-zoom-nav:hover {
+      border-color: #000;
+      background: rgba(255, 255, 255, .5)
+    }
+
+    .pdp-zoom .pdp-zoom-nav svg {
+      width: 30px;
+      height: 30px;
+      stroke: #555;
+      stroke-width: 1.2
+    }
+
+    .pdp-zoom .pdp-zoom-nav.prev {
+      left: clamp(16px, 5vw, 100px)
+    }
+
+    .pdp-zoom .pdp-zoom-nav.next {
+      right: clamp(16px, 5vw, 100px)
+    }
+
+    .pdp-zoom .pdp-zoom-close {
+      top: 24px;
+      right: 40px;
+      background: none
+    }
+
+    .pdp-zoom .pdp-zoom-close svg {
+      width: 28px;
+      height: 28px;
+      stroke: #000
+    }
+
+    .pdp-zoom-thumbs {
+      position: absolute;
+      right: 20px;
+      bottom: 30px;
+      display: flex;
+      gap: 2px
+    }
+
+    .pdp-zoom .pdp-zoom-thumbs button {
+      position: relative;
+      display: block;
+      padding: 0;
+      overflow: hidden;
+      flex: none;
+      width: 98px;
+      height: 124px;
+      border-radius: 0;
+      background: #e8e8e8;
+      opacity: .55;
+      transition: opacity .2s
+    }
+
+    .pdp-zoom .pdp-zoom-thumbs button:hover {
+      opacity: .85
+    }
+
+    .pdp-zoom .pdp-zoom-thumbs button[aria-current="true"] {
+      opacity: 1;
+      outline: 1px solid #000;
+      outline-offset: -1px
+    }
+
+    .pdp-zoom .pdp-zoom-thumbs button[aria-current="true"]::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background: #000
+    }
+
+    .pdp-zoom .pdp-zoom-thumbs img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: none;
+      object-fit: cover
+    }
+
+    .pdp-zoom .pdp-zoom-nav,
+    .pdp-zoom .pdp-zoom-close,
+    .pdp-zoom-thumbs {
+      z-index: 1
+    }
+
+    /* buy bar pinned under the viewer while it is open */
+    @media (min-width:721px) {
+      body.zooming .pdp-buy {
+        position: fixed;
+        top: auto;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 111;
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 0
+      }
+
+      body.zooming .pdp-err {
+        display: none
+      }
+    }
+
+    @media (max-width:720px) {
+      .pdp-zoom img#zoomImg {
+        height: calc(100% - 108px)
+      }
+
+      .pdp-zoom .pdp-zoom-close {
+        top: 12px;
+        right: 12px
+      }
+
+      .pdp-zoom-thumbs {
+        left: 0;
+        right: 0;
+        bottom: 16px;
+        justify-content: center
+      }
+
+      .pdp-zoom .pdp-zoom-thumbs button {
+        width: 60px;
+        height: 76px
+      }
+    }
     /* ---------- services strip above the footer (Bonpoint-style) ---------- */
     /* tighten the space between the last page section and the strip */
     main>section:not(.certs):has(+ .news) {
@@ -4061,6 +4219,7 @@
       <button class="pdp-zoom-nav next" id="zoomNext" aria-label="Next image"><svg>
           <use href="#i-right" />
         </svg></button>
+      <div class="pdp-zoom-thumbs" id="zoomThumbs" role="group" aria-label="Choose image"></div>
     </div>
 
     <!-- ===== Size guide drawer ===== -->
@@ -4574,14 +4733,35 @@
       }, { passive: true });
 
       /* zoom */
+      /* full-screen viewer: big image, round arrows, thumbnail strip (selected one highlighted),
+         and the page's own buy bar pinned along the bottom */
       const zoom = $('pdpZoom');
-      const showZoom = k => { st.img = (k + imgs.length) % imgs.length; $('zoomImg').src = IMG(imgs[st.img], 2000); $('zoomImg').alt = P.n; };
-      $('pdpTrack').addEventListener('click', e => { const f = e.target.closest('[data-z]'); if (!f) return; showZoom(+f.dataset.z); zoom.hidden = false; document.body.style.overflow = 'hidden'; $('zoomClose').focus(); });
-      const closeZoom = () => { zoom.hidden = true; document.body.style.overflow = ''; };
+      $('zoomThumbs').innerHTML = imgs.map((s, k) => `<button data-zt="${k}" aria-label="View image ${k + 1} of ${imgs.length}"><img src="${IMG(s, 240)}" alt=""></button>`).join('');
+      const showZoom = k => {
+        st.img = (k + imgs.length) % imgs.length;
+        $('zoomImg').src = IMG(imgs[st.img], 2000); $('zoomImg').alt = `${P.n}, image ${st.img + 1} of ${imgs.length}`;
+        [...$('zoomThumbs').children].forEach((b, j) => b.setAttribute('aria-current', j === st.img));
+      };
+      const fitZoom = () => document.documentElement.style.setProperty('--zoom-bar', innerWidth > 720 ? $('pdpBuy').offsetHeight + 'px' : '0px');
+      const openZoom = k => {
+        showZoom(k); zoom.hidden = false;
+        document.body.style.overflow = 'hidden'; document.body.classList.add('zooming');
+        fitZoom(); $('zoomClose').focus();
+      };
+      const closeZoom = () => { zoom.hidden = true; document.body.style.overflow = ''; document.body.classList.remove('zooming'); closePops(); };
+      $('pdpTrack').addEventListener('click', e => { const f = e.target.closest('[data-z]'); if (f) openZoom(+f.dataset.z); });
       $('zoomClose').onclick = closeZoom;
       $('zoomPrev').onclick = () => showZoom(st.img - 1);
       $('zoomNext').onclick = () => showZoom(st.img + 1);
-      zoom.addEventListener('click', e => { if (e.target === zoom || e.target.id === 'zoomImg') closeZoom(); });
+      $('zoomThumbs').addEventListener('click', e => { const b = e.target.closest('[data-zt]'); if (b) showZoom(+b.dataset.zt); });
+      addEventListener('resize', () => { if (!zoom.hidden) fitZoom(); });
+      /* swipe on touch screens */
+      let zx = null;
+      zoom.addEventListener('touchstart', e => { zx = e.touches[0].clientX; }, { passive: true });
+      zoom.addEventListener('touchend', e => {
+        if (zx === null) return; const dx = e.changedTouches[0].clientX - zx; zx = null;
+        if (Math.abs(dx) > 40) showZoom(st.img + (dx < 0 ? 1 : -1));
+      });
 
       /* title + price */
       $('pdpBadge').textContent = P.b || '';
@@ -4606,7 +4786,8 @@
       document.addEventListener('click', e => { if (!e.target.closest('.pdp-pick')) closePops(); });
       addEventListener('keydown', e => {
         if (e.key !== 'Escape') return;
-        if (!zoom.hidden) return closeZoom();
+        const popOpen = document.querySelector('.pdp-pop:not([hidden])');
+        if (!zoom.hidden && !popOpen) return closeZoom();
         closePops();
       });
       addEventListener('keydown', e => {

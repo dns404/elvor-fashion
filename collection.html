@@ -3618,6 +3618,161 @@
       }
     }
 
+
+    /* ---------- collection page: remove white space, homepage-style full-bleed tiles ---------- */
+    .plp-body {
+      padding-bottom: clamp(32px, 3vw, 48px)
+    }
+
+    .plp-more {
+      margin-top: 40px
+    }
+
+    .section.plp-explore.wrap {
+      padding: clamp(32px, 3vw, 48px) 0 0
+    }
+
+    .plp-explore .sec-head {
+      padding-inline: var(--gutter)
+    }
+
+    .plp-explore .universes {
+      gap: 3px
+    }
+
+    @media (max-width:720px) {
+      .plp-explore .universes {
+        margin-inline: 0;
+        padding-inline: 0;
+        scroll-padding-inline: 0
+      }
+    }
+
+    /* ---------- collection page layout (Bonpoint-style) ----------
+       text header (no hero), slim "Filter & Sort | count" bar, edge-to-edge 4-up grid with hairline seams,
+       cards show only centred name + price */
+    .plp-head {
+      text-align: center;
+      padding: clamp(48px, 6vw, 88px) var(--gutter) clamp(36px, 4vw, 56px)
+    }
+
+    .plp-head .plp-desc {
+      max-width: 600px;
+      margin: 18px auto 0;
+      font-size: 14px;
+      line-height: 25px;
+      font-weight: 300;
+      color: #000
+    }
+
+    .plp-bar {
+      border-top: 0;
+      border-bottom: 1px solid #e5e5e5
+    }
+
+    .plp-bar-row {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 28px;
+      height: 56px
+    }
+
+    .plp-filter-btn {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: .025rem;
+      text-transform: none;
+      color: #000
+    }
+
+    .plp-bar-sep {
+      width: 1px;
+      height: 12px;
+      background: #000
+    }
+
+    .plp-count {
+      display: block;
+      font-size: 14px;
+      font-weight: 300;
+      letter-spacing: .025rem;
+      color: #000
+    }
+
+    .plp-body.wrap {
+      padding-inline: 0
+    }
+
+    .plp-active,
+    .plp-more,
+    .plp-empty {
+      padding-inline: var(--gutter)
+    }
+
+    .plp-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0 3px;
+      padding-top: clamp(24px, 3vw, 48px)
+    }
+
+    .plp-grid .card-media {
+      aspect-ratio: 3/4;
+      background: #f5f5f5
+    }
+
+    .plp-grid .card-info {
+      padding: 20px 16px 56px
+    }
+
+    .plp-grid .card-info h3 {
+      font-size: 14px;
+      line-height: 20px
+    }
+
+    .plp-grid .card-info .price {
+      margin-top: 4px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #000
+    }
+
+    /* editorial tile lines up with the image rows */
+    .plp-edit {
+      margin-bottom: 56px
+    }
+
+    /* sort now lives only in the filter drawer, on every screen size */
+    .f-sort {
+      display: block !important
+    }
+
+    @media (max-width:1024px) {
+      .plp-grid {
+        grid-template-columns: repeat(3, 1fr)
+      }
+    }
+
+    @media (max-width:720px) {
+      .plp-bar-row {
+        gap: 20px;
+        height: 50px
+      }
+
+      .plp-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0 3px
+      }
+
+      .plp-grid .card-info {
+        padding: 14px 10px 36px
+      }
+
+      .plp-edit {
+        margin-bottom: 36px
+      }
+    }
     /* ---------- services strip above the footer (Bonpoint-style) ---------- */
     /* tighten the space between the last page section and the strip */
     main>section:not(.certs):has(+ .news) {
@@ -3794,44 +3949,18 @@
 
   <main>
     <!-- ===== Collection banner ===== -->
-    <section class="plp-hero" id="plpHero" aria-labelledby="plpTitle">
-      <img id="plpHeroImg" src="images/web/hero-festive-staircase.jpg" alt="">
-      <div class="plp-hero-copy">
-        <p class="eyebrow" id="plpEyebrow"></p>
-        <h1 class="display" id="plpTitle">The Collection</h1>
-      </div>
+    <!-- ===== Title + description (Bonpoint-style text header, no hero image) ===== -->
+    <section class="plp-head wrap" aria-labelledby="plpTitle">
+      <h1 class="display" id="plpTitle">The Collection</h1>
+      <p class="plp-desc" id="plpDesc"></p>
     </section>
 
-    <!-- ===== Intro: breadcrumb, description, sub-categories ===== -->
-    <div class="plp-intro wrap">
-      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><b id="plpCrumb">Collection</b></nav>
-      <p class="plp-desc" id="plpDesc"></p>
-      <div class="plp-subs" id="plpSubs" role="group" aria-label="Categories"></div>
-    </div>
-
-    <!-- ===== Toolbar (sticky) ===== -->
+    <!-- ===== Toolbar (sticky): Filter & Sort | count ===== -->
     <div class="plp-bar" id="plpBar">
       <div class="plp-bar-row wrap">
-        <button class="plp-filter-btn" data-open="filters" aria-controls="filters">
-          <svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8" /><circle cx="16" cy="7" r="2" /><circle cx="10" cy="17" r="2" /></svg>
-          Filter <span id="filterCount"></span>
-        </button>
+        <button class="plp-filter-btn" data-open="filters" aria-controls="filters">Filter &amp; Sort <span id="filterCount"></span></button>
+        <span class="plp-bar-sep" aria-hidden="true"></span>
         <p class="plp-count" id="plpCount" aria-live="polite"></p>
-        <div class="plp-bar-end">
-          <label class="plp-sort">
-            <span class="sr-only">Sort by</span>
-            <select id="plpSort">
-              <option value="rec">Recommended</option>
-              <option value="new">Newest</option>
-              <option value="asc">Price: low to high</option>
-              <option value="desc">Price: high to low</option>
-            </select>
-          </label>
-          <div class="plp-view" role="group" aria-label="Grid view">
-            <button data-view="dense" class="on" aria-label="Small images" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z" /></svg></button>
-            <button data-view="large" aria-label="Large images" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3z" /></svg></button>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -4349,11 +4478,11 @@
 
     /* state ← URL (unknown values are dropped; an unlisted price band from a link is kept) */
     const fromURL = k => (params.get(k) || '').split(',').filter(Boolean);
-    const st = { sub: new Set(), size: new Set(), color: new Set(), price: new Set(), sort: 'rec', view: 'dense', shown: PAGE };
+    const st = { sub: new Set(), size: new Set(), color: new Set(), price: new Set(), sort: 'rec', shown: PAGE };
+    const SORTS = [['rec', 'Recommended'], ['new', 'Newest'], ['asc', 'Price: low to high'], ['desc', 'Price: high to low']];
     ['sub', 'size', 'color'].forEach(k => fromURL(k).forEach(v => OPTS[k].includes(v) && st[k].add(v)));
     fromURL('price').forEach(v => { if (/^\d+-\d*$/.test(v)) { st.price.add(v); if (!OPTS.price.includes(v)) OPTS.price.unshift(v); } });
     if (['new', 'asc', 'desc'].includes(params.get('sort'))) st.sort = params.get('sort');
-    try { if (localStorage.getItem('elvor-plp-view') === 'large') st.view = 'large'; } catch (e) { }
 
     function syncURL() {
       const u = new URLSearchParams(); if (key !== 'all') u.set('c', key);
@@ -4380,9 +4509,7 @@
 
     /* ----- static parts: banner, intro, explore ----- */
     document.title = `${COL.name} — Elvor`;
-    $('plpHeroImg').src = IMG(COL.img, 1800); $('plpHeroImg').style.objectPosition = COL.pos; $('plpHeroImg').alt = COL.name;
-    $('plpTitle').textContent = COL.name; $('plpEyebrow').textContent = COL.eyebrow;
-    $('plpCrumb').textContent = COL.name; $('plpDesc').textContent = COL.desc;
+    $('plpTitle').textContent = COL.name; $('plpDesc').textContent = COL.desc;
     $('plpExplore').innerHTML = ['newborn', 'girl', 'boy', 'special', 'care', 'accessories', 'gifts'].filter(k => k !== key).slice(0, 3)
       .map(k => { const c = COLLECTIONS[k]; return `<a href="collection.html?c=${k}" class="uni"><img loading="lazy" src="${IMG(c.img, 900)}" alt="" style="object-position:${c.pos}"><div class="uni-copy"><h3>${c.name}</h3><p>${c.eyebrow}</p></div></a>`; }).join('');
 
@@ -4398,8 +4525,7 @@
         <button class="quick" data-add="${i}">Add to bag</button>
       </div>
       <div class="card-info">
-        <h3><a href="${PDP(p)}">${p.n}</a></h3><p class="meta">${p.m}</p><p class="price">${inr(p.p)}</p>
-        ${p.sw.length ? `<div class="swatches">${p.sw.map(c => `<i style="background:${COLORS[c]}" title="${c}"></i>`).join('')}</div>` : ''}
+        <h3><a href="${PDP(p)}">${p.n}</a></h3><p class="price">${inr(p.p)}</p>
       </div>
     </article>`;
     const editTile = e => `
@@ -4416,7 +4542,6 @@
       /* grid, with an editorial tile after the 6th product (Bonpoint-style) */
       const cards = shown.map(card);
       if (shown.length > 6) cards.splice(6, 0, editTile(COL.edit));
-      grid.classList.toggle('large', st.view === 'large');
       grid.innerHTML = n ? cards.join('') : `<div class="plp-empty"><p class="display">Nothing matches just yet</p><p>Try removing a filter or two.</p><button class="btn btn-ghost" data-clear>Clear all filters</button></div>`;
 
       /* counts + load more */
@@ -4428,13 +4553,6 @@
       /* toolbar */
       const ac = activeCount();
       $('filterCount').textContent = ac ? `(${ac})` : '';
-      $('plpSort').value = st.sort;
-      document.querySelectorAll('[data-view]').forEach(b => { const on = b.dataset.view === st.view; b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
-
-      /* sub-category links under the title */
-      $('plpSubs').innerHTML = OPTS.sub.length > 1
-        ? `<button data-sub="" class="${st.sub.size ? '' : 'on'}">All</button>` + OPTS.sub.map(s => `<button data-sub="${s}" class="${st.sub.has(s) ? 'on' : ''}">${s}</button>`).join('')
-        : '';
 
       /* active chips */
       $('plpActive').innerHTML = ac ? ['sub', 'size', 'color', 'price'].flatMap(k => [...st[k]].map(v =>
@@ -4456,7 +4574,7 @@
         }).join('');
         return `<div class="f-group"><h4>${LABEL[k]}</h4><div class="f-opts">${opts}</div></div>`;
       };
-      const sort = `<div class="f-group f-sort"><h4>Sort by</h4>${[...$('plpSort').options].map(o => `<label><input type="radio" name="fsort" value="${o.value}" ${o.value === st.sort ? 'checked' : ''}>${o.text}</label>`).join('')}</div>`;
+      const sort = `<div class="f-group f-sort"><h4>Sort by</h4>${SORTS.map(([v, t]) => `<label><input type="radio" name="fsort" value="${v}" ${v === st.sort ? 'checked' : ''}>${t}</label>`).join('')}</div>`;
       $('filterBody').innerHTML = sort + ['sub', 'size', 'color', 'price'].map(group).join('');
       $('filterApply').textContent = `Show ${n} ${n === 1 ? 'piece' : 'pieces'}`;
     }
@@ -4467,20 +4585,11 @@
     $('filterBody').addEventListener('click', e => { const b = e.target.closest('[data-f]'); if (b) toggle(b.dataset.f, b.dataset.v); });
     $('filterBody').addEventListener('change', e => { if (e.target.name === 'fsort') { st.sort = e.target.value; render(); } });
     $('filterClear').onclick = clearAll;
-    $('plpSort').onchange = e => { st.sort = e.target.value; render(); };
     $('plpLoad').onclick = () => { st.shown += PAGE; render(); };
-    $('plpSubs').addEventListener('click', e => {
-      const b = e.target.closest('[data-sub]'); if (!b) return;
-      st.sub.clear(); if (b.dataset.sub) st.sub.add(b.dataset.sub); st.shown = PAGE; render();
-    });
     $('plpActive').addEventListener('click', e => {
       const b = e.target.closest('[data-rm-f]'); if (b) toggle(b.dataset.rmF, b.dataset.v);
     });
     document.addEventListener('click', e => { if (e.target.closest('[data-clear]')) clearAll(); });
-    document.querySelectorAll('[data-view]').forEach(b => b.onclick = () => {
-      st.view = b.dataset.view; try { localStorage.setItem('elvor-plp-view', st.view); } catch (e) { }
-      render();
-    });
     render();
 
     /* ---------- cart ---------- */
