@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Lexend+Exa:wght@300;400&display=swap"
     rel="stylesheet">
   <style>
     /* Logo wordmark font — Cammron Serif (single weight; boldness added via text-stroke on .logo-word) */
@@ -2948,12 +2948,36 @@
     }
 
     .section.gifts {
-      padding-top: 3px
+      padding-top: 3px;
+      padding-bottom: 3px
+    }
+
+    /* New In banner sits between Gifts and Care & Accessories with the same 3px seams */
+    .new-in.wrap {
+      padding: 0 0 3px
+    }
+
+    .new-in .uni.uni-wide {
+      margin-top: 0
+    }
+
+    /* Care & Accessories tiles run straight into the cream Certifications band */
+    .section.care-acc {
+      padding-bottom: 0
+    }
+
+    .section.certs {
+      padding-block: clamp(40px, 4vw, 64px)
     }
 
     @media (max-width:1024px) {
       .gift-finder {
         padding-inline: var(--gutter)
+      }
+
+      /* finder text drops below the gift image here, so give it room before New In */
+      .section.gifts {
+        padding-bottom: 32px
       }
     }
 
@@ -2963,6 +2987,228 @@
         margin-inline: 0;
         padding-inline: 0;
         scroll-padding-inline: 0
+      }
+    }
+
+    /* ---------- typography (Bonpoint-style) ----------
+       Body: light geometric sans (Jost ≈ Brown) 300, 14px/20px, black.
+       Titles, labels, buttons: wide uppercase sans (Lexend Exa ≈ Sackers Gothic), tracked .075rem.
+       Secondary text: #757575. */
+    :root {
+      --ink: #000;
+      --ink-soft: #757575;
+      --muted: #757575;
+      --wide: 'Lexend Exa', 'Helvetica Neue', Arial, sans-serif
+    }
+
+    body {
+      color: #000;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: .025rem
+    }
+
+    /* section + page titles: 20px wide caps */
+    .display,
+    :is(h1, h2, p).display,
+    .sec-head h2,
+    .news h2,
+    .empty .display {
+      font-family: var(--wide);
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 26px;
+      letter-spacing: .075rem;
+      text-transform: uppercase
+    }
+
+    .display em,
+    .slide-copy h1 em,
+    .slide-copy h2 em,
+    .mega-feature span {
+      font-style: normal
+    }
+
+    .pdp-missing .display,
+    .plp-empty .display {
+      font-size: 20px;
+      line-height: 26px
+    }
+
+    /* hero / large titles: 35px wide caps */
+    .slide-copy h1,
+    .plp-hero-copy h1 {
+      font-family: var(--wide);
+      font-weight: 400;
+      font-size: 35px;
+      line-height: 41px;
+      letter-spacing: .075rem;
+      text-transform: uppercase
+    }
+
+    /* image tile titles and other display labels */
+    .uni-copy h3,
+    .gift-finder h3,
+    .price-finder h3,
+    .acc h3,
+    .care-item h4,
+    .plp-edit h3,
+    .mega-feature span,
+    .gift-mini span,
+    .stats b {
+      font-family: var(--wide);
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 26px;
+      letter-spacing: .075rem;
+      text-transform: uppercase
+    }
+
+    /* small caps labels: eyebrows, tags, buttons — 10-11px wide caps */
+    .eyebrow,
+    .uni-copy p,
+    .gift-tag,
+    .btn {
+      font-family: var(--wide);
+      font-weight: 400;
+      font-size: 10px;
+      letter-spacing: .075rem;
+      text-transform: uppercase
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      color: #000
+    }
+
+    /* product names, prices, menu: regular body sans, sentence case */
+    .card-info h3,
+    .line-item h4,
+    .search-results a span,
+    .search-field input,
+    .m-nav>li>a,
+    .m-nav>li>button,
+    .pdp-bar b {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 20px;
+      letter-spacing: .025rem;
+      text-transform: none
+    }
+
+    .pdp-title h1 {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 26px;
+      letter-spacing: .025rem
+    }
+
+    @media (max-width:720px) {
+      body {
+        font-size: 14px
+      }
+
+      .slide-copy h1,
+      .plp-hero-copy h1 {
+        font-size: 20px;
+        line-height: 26px
+      }
+
+      .display,
+      :is(h1, h2, p).display,
+      .sec-head h2,
+      .news h2,
+      .uni-copy h3,
+      .gift-finder h3 {
+        font-size: 16px;
+        line-height: 22px
+      }
+    }
+
+    /* ---------- services strip above the footer (Bonpoint-style) ---------- */
+    /* tighten the space between the last page section and the strip */
+    main>section:not(.certs):has(+ .news) {
+      padding-bottom: clamp(32px, 3vw, 48px)
+    }
+
+    .section.news {
+      padding-top: clamp(32px, 3vw, 48px)
+    }
+
+    main>section:last-child {
+      padding-bottom: clamp(32px, 3vw, 48px)
+    }
+
+    .services {
+      border-top: 1px solid #e5e5e5;
+      padding: clamp(28px, 3vw, 40px) var(--gutter)
+    }
+
+    .services-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      max-width: 1400px;
+      margin: 0 auto;
+      list-style: none;
+      padding: 0
+    }
+
+    .services li {
+      text-align: center
+    }
+
+    .services svg {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 22px;
+      fill: none;
+      stroke: #000;
+      stroke-width: 1;
+      stroke-linejoin: round;
+      stroke-linecap: round
+    }
+
+    .services h3 {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+      letter-spacing: .025rem;
+      text-transform: none;
+      color: #000
+    }
+
+    .services p {
+      margin-top: 6px;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 22px;
+      color: #000
+    }
+
+    .services a {
+      text-decoration: underline;
+      text-underline-offset: 3px
+    }
+
+    @media (max-width:900px) {
+      .services-row {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 40px
+      }
+    }
+
+    @media (max-width:420px) {
+      .services h3 {
+        font-size: 14px
+      }
+
+      .services p {
+        font-size: 13px
       }
     }
   </style>
@@ -3137,29 +3383,15 @@
       </div>
     </section>
 
-    <!-- ===== New in ===== -->
-    <section class="section new-in wrap" style="padding-top:0" aria-labelledby="new-h">
-      <div class="sec-head reveal">
-        <p class="eyebrow">Just arrived</p>
-        <h2 id="new-h" class="display">New In</h2>
-      </div>
-      <div class="tabs" role="tablist" id="tabs">
-        <button class="tab on" data-f="all" role="tab">All</button>
-        <button class="tab" data-f="newborn" role="tab">New Born</button>
-        <button class="tab" data-f="girl" role="tab">Girl</button>
-        <button class="tab" data-f="boy" role="tab">Boy</button>
-      </div>
-      <div class="rail">
-        <div class="products" id="products"></div>
-        <div class="rail-nav">
-          <button aria-label="Previous" id="prev"><svg>
-              <use href="#i-left" />
-            </svg></button>
-          <button aria-label="Next" id="next"><svg>
-              <use href="#i-right" />
-            </svg></button>
+    <!-- ===== New in: full-width landscape banner (same as New Born) ===== -->
+    <section class="section new-in wrap" aria-label="New in">
+      <a href="collection.html?sort=new" class="uni uni-wide reveal"><img loading="lazy" src="images/web/girl-velvet-portrait.jpg"
+          alt="Girl in a black velvet dress with a lace collar by a farmhouse stone wall" style="object-position:center 30%">
+        <div class="uni-copy">
+          <h3>New In</h3>
+          <p>Just arrived</p>
         </div>
-      </div>
+      </a>
     </section>
 
     <!-- ===== Care & Accessories ===== -->
@@ -3274,6 +3506,52 @@
       <small>By subscribing you agree to our Privacy Policy. Unsubscribe anytime.</small>
     </section>
   </main>
+
+  <!-- ===== Services strip (shown above the footer on every page) ===== -->
+  <section class="services" aria-label="Our services">
+    <ul class="services-row">
+      <li>
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M6 30V14h22v16M28 20h8l6 6v4" />
+          <rect x="15" y="8" width="8" height="6" />
+          <circle cx="13" cy="33" r="4" /><circle cx="35" cy="33" r="4" />
+          <path d="M17 33h14M6 30h3M39 30h3" />
+          <path d="M14 20c1.5-2 3.5-2 5 0" />
+        </svg>
+        <h3>Free home delivery</h3>
+        <p>on orders over ₹1,999</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M6 12 40 6 28 34l-7-11-15-11Z" />
+          <path d="M21 23 40 6" />
+          <path d="M28 34c4 4 2 8 6 9s6-3 9-1" stroke-dasharray="2 2" />
+        </svg>
+        <h3>Free exchanges</h3>
+        <p>within 15 days of delivery</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="6" y="16" width="20" height="26" />
+          <path d="M16 16v26M6 22h20M16 16c-4-6-9-5-8-2s8 2 8 2 7 1 8-2-4-4-8 2" />
+          <rect x="24" y="24" width="18" height="18" />
+          <path d="M29 24v-3a4 4 0 0 1 8 0v3" />
+        </svg>
+        <h3>Gift wrapping</h3>
+        <p>free keepsake box &amp; message card</p>
+      </li>
+      <li>
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="15" y="5" width="18" height="38" rx="2" />
+          <path d="M15 11h18M15 35h18" />
+          <circle cx="24" cy="39" r="1.3" />
+          <path d="M20 22c0-3 4-4 4-1 0-3 4-2 4 1 0 3-4 5-4 5s-4-2-4-5Z" />
+        </svg>
+        <h3>Customer service</h3>
+        <p><a href="tel:+918000000000">+91 80000 00000</a> or by <a href="mailto:care@elvor.in">email</a></p>
+      </li>
+    </ul>
+  </section>
 
   <!-- ===== Footer ===== -->
   <footer class="footer">
@@ -3558,36 +3836,6 @@
     const header = document.getElementById('header');
     addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 10), { passive: true });
 
-    /* ---------- products ---------- */
-    const grid = document.getElementById('products');
-    function renderProducts(f = 'all') {
-      grid.innerHTML = PRODUCTS.map((p, i) => ({ p, i })).filter(({ p }) => f === 'all' || p.c === f).map(({ p, i }) => `
-    <article class="card">
-      <div class="card-media">
-        ${p.b ? `<span class="badge${p.red ? ' red' : ''}">${p.b}</span>` : ''}
-        <button class="wish" aria-label="Add to wishlist"><svg><use href="#i-heart"/></svg></button>
-        <img loading="lazy" src="${IMG(p.img, 700)}" alt="${p.n}">
-        <img loading="lazy" class="alt" src="${IMG(p.alt, 700)}" alt="">
-        <a class="card-link" href="${PDP(p)}" tabindex="-1" aria-hidden="true"></a>
-        <button class="quick" data-add="${i}">Add to bag</button>
-      </div>
-      <div class="card-info">
-        <h3><a href="${PDP(p)}">${p.n}</a></h3><p class="meta">${p.m}</p><p class="price">${inr(p.p)}</p>
-        <div class="swatches">${p.sw.map(c => `<i style="background:${c}"></i>`).join('')}</div>
-      </div>
-    </article>`).join('');
-      grid.scrollLeft = 0;
-    }
-    renderProducts();
-    document.getElementById('tabs').addEventListener('click', e => {
-      const t = e.target.closest('.tab'); if (!t) return;
-      document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === t));
-      renderProducts(t.dataset.f);
-    });
-    const step = () => (grid.querySelector('.card')?.offsetWidth || 300) + 20;
-    document.getElementById('prev').onclick = () => grid.scrollBy({ left: -step(), behavior: 'smooth' });
-    document.getElementById('next').onclick = () => grid.scrollBy({ left: step(), behavior: 'smooth' });
-
     /* ---------- cart ---------- */
     const FREE_SHIP = 1999;
     let cart = [{ i: 0, q: 1, size: '3–6M' }];
@@ -3623,13 +3871,6 @@
       toast(`${PRODUCTS[i].n} added to your bag`);
     }
     renderCart();
-
-    /* product grid delegated clicks */
-    grid.addEventListener('click', e => {
-      const add = e.target.closest('[data-add]'), w = e.target.closest('.wish');
-      if (add) addToBag(+add.dataset.add);
-      if (w) { w.classList.toggle('on'); toast(w.classList.contains('on') ? 'Saved to your wishlist' : 'Removed from wishlist'); }
-    });
 
     /* ---------- toast ---------- */
     let tt;
