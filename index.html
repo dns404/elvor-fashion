@@ -3738,49 +3738,9 @@
       <use href="#i-check" />
     </svg><span id="toastMsg"></span></div>
 
+  <script src="js/menu.js"></script>
   <script>
     /* ---------- data ---------- */
-    const IMG = (id, w = 800) => id.includes("/") ? id : `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
-
-    const MENU = [
-      {
-        k: 'newborn', name: 'New Born', img: 'images/web/newborn-smocked-romper.jpg', feat: 'Hand-smocked heirlooms', cols: [
-          ['Clothing', ['Bodysuits & Rompers', 'Sleepsuits', 'Jhablas & Kurtas', 'Knitwear', 'Outfit Sets']],
-          ['Essentials', ['Muslin Swaddles', 'Blankets', 'Bibs & Burp Cloths', 'Mittens & Booties']],
-          ['By age', ['0 – 3 months', '3 – 6 months', '6 – 12 months', '12 – 24 months']]]
-      },
-      {
-        k: 'girl', name: 'Girl', img: '1578897367107-2828e351c8a8', feat: 'Festive dresses', cols: [
-          ['Clothing', ['Dresses & Frocks', 'Lehengas & Ethnic', 'Tops & Blouses', 'Skirts & Shorts', 'Co-ord Sets', 'Nightwear']],
-          ['Collections', ['The Festive Edit', 'Summer Muslins', 'Party Wear', 'Everyday Essentials']],
-          ['By age', ['2 – 4 years', '4 – 8 years', '8 – 12 years', '12 – 14 years']]]
-      },
-      {
-        k: 'boy', name: 'Boy', img: 'images/web/boy-red-panda-sweater.jpg', feat: 'The red panda sweater', cols: [
-          ['Clothing', ['Shirts', 'T-shirts & Polos', 'Kurta Sets', 'Shorts & Trousers', 'Knitwear', 'Nightwear']],
-          ['Collections', ['The Festive Edit', 'Summer Linens', 'Occasion Wear', 'Everyday Essentials']],
-          ['By age', ['2 – 4 years', '4 – 8 years', '8 – 12 years', '12 – 14 years']]]
-      },
-      {
-        k: 'care', name: 'Care', img: '1533483595632-c5f0e57a1936', feat: 'Gentle rituals', cols: [
-          ['Bath & Body', ['Massage Oils', 'Lotions & Balms', 'Wash & Shampoo', 'Nappy Care']],
-          ['Fragrance', ['Eau de Soin', 'Scented Mist', 'Home Fragrance']],
-          ['Sets', ['Care Gift Sets', 'Travel Minis', 'New Mother Kit']]]
-      },
-      {
-        k: 'accessories', name: 'Accessories', img: '1622290291468-a28f7a7dc6a8', feat: 'Finishing touches', cols: [
-          ['Wear', ['Hats & Bonnets', 'Hair Accessories', 'Socks & Tights', 'Footwear']],
-          ['Carry', ['Diaper Bags', 'Backpacks', 'Pouches']],
-          ['Play & Sleep', ['Soft Toys', 'Blankets', 'Keepsakes']]]
-      },
-      {
-        k: 'gifts', name: 'Gifts', gift: true, img: 'images/web/gift-suitcase-set.jpg', feat: 'The keepsake case', cols: [
-          ['Occasions', ['Birth Gifts', 'Naming Ceremony', 'Birthday', 'Diwali Hampers']],
-          ['By price', ['Under ₹1,999', '₹2,000 – ₹3,999', '₹4,000 – ₹5,999', 'Luxury Hampers']],
-          ['Services', ['E-Gift Cards', 'Gift Wrapping', 'Personalisation']]]
-      },
-    ];
-
     const PRODUCTS = [
       { n: 'Hand-Smocked Romper', c: 'newborn', m: 'Cotton batiste · 6–24M', p: 2890, img: 'images/web/newborn-smocked-romper.jpg', alt: '1617331140180-e8262094733a', b: 'New', sw: ['#a9c4de', '#f3efe6', '#e9cfc6'] },
       { n: 'Polka Dot Smock Blouse', c: 'girl', m: 'Cotton voile · 2–8Y', p: 2290, img: '1518831959646-742c3a14ebf7', alt: '1503454537195-1dcabb73ffb9', b: 'Bestseller', sw: ['#f3efe6', '#1d2a44'] },
@@ -3796,33 +3756,7 @@
     const slug = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
     const PDP = p => 'product.html?p=' + slug(p.n);
 
-    /* ---------- header nav + mega menu ---------- */
-    const nav = document.getElementById('nav'), mnav = document.getElementById('mnav');
-    /* menu item → collection URL (sub-category, age band, price band or edit) — same as collection.html */
-    const MENU_PRICE = { 'Under ₹1,999': '0-1999', '₹2,000 – ₹3,999': '2000-3999', '₹4,000 – ₹5,999': '4000-5999', 'Luxury Hampers': '6000-' };
-    function menuLink(k, item, group) {
-      const u = new URLSearchParams({ c: k });
-      if (!item) return 'collection.html?' + u;
-      if (item === 'The Festive Edit') return 'collection.html?c=special';
-      if (group === 'By age') u.set('size', item.replace(' – ', '–').replace(' years', 'Y').replace(' months', 'M'));
-      else if (group === 'By price') u.set('price', MENU_PRICE[item] || '');
-      else u.set('sub', item);
-      return 'collection.html?' + u;
-    }
-    MENU.forEach(m => {
-      const cols = m.cols.map(([h, items]) => `<div><h4>${h}</h4><ul>${items.map(i => `<li><a href="${menuLink(m.k, i, h)}">${i}</a></li>`).join('')}</ul></div>`).join('');
-      nav.insertAdjacentHTML('beforeend', `<li><a href="${menuLink(m.k)}" class="nav-link${m.gift ? ' gift' : ''}">${m.name}</a>
-    <div class="mega"><div class="mega-inner">${cols}<a href="${menuLink(m.k)}" class="mega-feature"><img loading="lazy" src="${IMG(m.img, 700)}" alt=""><span>${m.feat}</span></a></div></div></li>`);
-      const sub = m.cols.map(([h, items]) => `<h5>${h}</h5><ul>${items.map(i => `<li><a href="${menuLink(m.k, i, h)}">${i}</a></li>`).join('')}</ul>`).join('');
-      mnav.insertAdjacentHTML('beforeend', `<li><button class="${m.gift ? 'gift' : ''}" aria-expanded="false">${m.name}<svg><use href="#i-right"/></svg></button>
-    <div class="m-sub"><div>${sub}<a href="${menuLink(m.k)}" class="m-all">Shop all ${m.name}</a></div></div></li>`);
-    });
-    mnav.addEventListener('click', e => {
-      const b = e.target.closest('li > button'); if (!b) return;
-      const li = b.parentElement, open = !li.classList.contains('open');
-      mnav.querySelectorAll(':scope > li.open').forEach(x => { x.classList.remove('open'); x.firstElementChild.setAttribute('aria-expanded', 'false'); });
-      if (open) { li.classList.add('open'); b.setAttribute('aria-expanded', 'true'); }
-    });
+    /* header nav + mega menu: built by js/menu.js */
 
     /* footer accordions (mobile only — CSS ignores .open on wider screens) */
     document.querySelectorAll('.foot-col h4').forEach(h => {

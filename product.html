@@ -4037,6 +4037,258 @@
         font-size: 13px
       }
     }
+
+    /* ---------- look (product.html?look=…) ----------
+       same layout as a single product; these only style what differs:
+       the "+ Pieces" panel, the per-piece rows in the "+ Age" panel and "The pieces" tab */
+    .pdp-look .pdp-pop {
+      max-height: min(70vh, 520px);
+      overflow-y: auto
+    }
+
+    /* + Pieces: one row per piece, ticked when it is in the look */
+    .pdp-look #pdpColorPop {
+      min-width: 300px
+    }
+
+    .pdp-look #pdpColorPop button {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr) 20px;
+      gap: 12px;
+      align-items: center
+    }
+
+    .pdp-look #pdpColorPop img {
+      width: 40px;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      background: var(--sand)
+    }
+
+    .pdp-look #pdpColorPop span {
+      display: grid;
+      font-size: 13px;
+      line-height: 18px
+    }
+
+    .pdp-look #pdpColorPop small {
+      font-size: 12px;
+      color: var(--ink-soft)
+    }
+
+    .pdp-look #pdpColorPop b {
+      font-weight: 400;
+      text-align: center
+    }
+
+    .pdp-look #pdpColorPop [aria-pressed="false"] img,
+    .pdp-look #pdpColorPop [aria-pressed="false"] span {
+      opacity: .4
+    }
+
+    /* + Age: a labelled row of age buttons per piece */
+    .pdp-look #pdpSizes {
+      display: block;
+      margin-bottom: 16px
+    }
+
+    .look-age+.look-age {
+      margin-top: 16px
+    }
+
+    .look-age p {
+      font-size: 12px;
+      margin-bottom: 8px
+    }
+
+    .look-age .pdp-sizes {
+      margin: 0
+    }
+
+    .look-age.err p {
+      color: var(--accent)
+    }
+
+    .look-age-none {
+      font-size: 13px;
+      color: var(--ink-soft)
+    }
+
+    /* "The pieces" tab: a grid of the pieces */
+    #panel-pieces:not([hidden]) {
+      display: block;
+      color: var(--ink)
+    }
+
+    .look-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 36px 20px
+    }
+
+    .look-piece {
+      transition: opacity .3s
+    }
+
+    .look-piece.off .look-piece-img,
+    .look-piece.off h3,
+    .look-piece.off .look-piece-price,
+    .look-piece.off .look-colors,
+    .look-piece.off .look-guide,
+    .look-piece.off .look-sizes {
+      opacity: .35
+    }
+
+    .look-piece-img {
+      display: block;
+      overflow: hidden;
+      background: var(--sand);
+      margin-bottom: 14px
+    }
+
+    .look-piece-img img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      transition: transform .8s var(--ease)
+    }
+
+    .look-piece-img:hover img {
+      transform: scale(1.04)
+    }
+
+    .pdp-panel .look-piece h3 {
+      font-family: var(--sans);
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 400;
+      letter-spacing: normal;
+      text-transform: none;
+      color: var(--ink)
+    }
+
+    .look-piece h3 a:hover {
+      text-decoration: underline;
+      text-underline-offset: 3px
+    }
+
+    .look-piece-price {
+      font-size: 13px;
+      margin-top: 2px
+    }
+
+    .look-colors {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 10px;
+      font-size: 12px
+    }
+
+    .look-colors span {
+      margin-left: 4px;
+      color: var(--ink-soft)
+    }
+
+    .look-colors button {
+      display: grid;
+      place-items: center;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid transparent
+    }
+
+    .look-colors button[aria-checked="true"] {
+      border-color: var(--ink)
+    }
+
+    .look-colors i {
+      display: block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .15)
+    }
+
+    .look-guide {
+      display: flex;
+      gap: 10px;
+      align-items: baseline;
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--muted)
+    }
+
+    .look-guide span+.link-u::before {
+      content: "|";
+      margin-right: 10px;
+      color: var(--line)
+    }
+
+    .look-sizes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 14px;
+      margin-top: 6px
+    }
+
+    .look-sizes button {
+      font-size: 12px;
+      padding: 2px 0;
+      border-bottom: 1px solid transparent
+    }
+
+    .look-sizes button:not(:disabled):hover {
+      border-color: var(--line)
+    }
+
+    .look-sizes button[aria-checked="true"],
+    .look-sizes button[aria-checked="true"]:hover {
+      border-color: var(--ink);
+      font-weight: 500
+    }
+
+    .look-sizes button:disabled {
+      color: var(--muted);
+      text-decoration: line-through;
+      cursor: default
+    }
+
+    .look-piece.err .look-guide span,
+    .look-piece.err .look-sizes button:not(:disabled) {
+      color: var(--accent)
+    }
+
+    .look-links {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 14px
+    }
+
+    .look-piece .link-u {
+      font-size: 11px;
+      letter-spacing: normal;
+      text-transform: none
+    }
+
+    .pdp-add:disabled,
+    .pdp-bar .btn:disabled {
+      opacity: .35;
+      cursor: default
+    }
+
+    @media (max-width:720px) {
+      .look-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 28px 12px
+      }
+
+      .pdp-look #pdpColorPop {
+        min-width: 0
+      }
+    }
   </style>
 </head>
 
@@ -4478,187 +4730,11 @@
       <use href="#i-check" />
     </svg><span id="toastMsg"></span></div>
 
+  <script src="js/menu.js"></script>
+  <script src="js/products.js"></script>
   <script>
-    /* ---------- data ---------- */
-    const IMG = (id, w = 800) => id.includes("/") ? id : `https://images.unsplash.com/photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
 
-    const MENU = [
-      {
-        k: 'newborn', name: 'New Born', img: 'images/web/newborn-smocked-romper.jpg', feat: 'Hand-smocked heirlooms', cols: [
-          ['Clothing', ['Bodysuits & Rompers', 'Sleepsuits', 'Jhablas & Kurtas', 'Knitwear', 'Outfit Sets']],
-          ['Essentials', ['Muslin Swaddles', 'Blankets', 'Bibs & Burp Cloths', 'Mittens & Booties']],
-          ['By age', ['0 – 3 months', '3 – 6 months', '6 – 12 months', '12 – 24 months']]]
-      },
-      {
-        k: 'girl', name: 'Girl', img: '1578897367107-2828e351c8a8', feat: 'Festive dresses', cols: [
-          ['Clothing', ['Dresses & Frocks', 'Lehengas & Ethnic', 'Tops & Blouses', 'Skirts & Shorts', 'Co-ord Sets', 'Nightwear']],
-          ['Collections', ['The Festive Edit', 'Summer Muslins', 'Party Wear', 'Everyday Essentials']],
-          ['By age', ['2 – 4 years', '4 – 8 years', '8 – 12 years', '12 – 14 years']]]
-      },
-      {
-        k: 'boy', name: 'Boy', img: 'images/web/boy-red-panda-sweater.jpg', feat: 'The red panda sweater', cols: [
-          ['Clothing', ['Shirts', 'T-shirts & Polos', 'Kurta Sets', 'Shorts & Trousers', 'Knitwear', 'Nightwear']],
-          ['Collections', ['The Festive Edit', 'Summer Linens', 'Occasion Wear', 'Everyday Essentials']],
-          ['By age', ['2 – 4 years', '4 – 8 years', '8 – 12 years', '12 – 14 years']]]
-      },
-      {
-        k: 'care', name: 'Care', img: '1533483595632-c5f0e57a1936', feat: 'Gentle rituals', cols: [
-          ['Bath & Body', ['Massage Oils', 'Lotions & Balms', 'Wash & Shampoo', 'Nappy Care']],
-          ['Fragrance', ['Eau de Soin', 'Scented Mist', 'Home Fragrance']],
-          ['Sets', ['Care Gift Sets', 'Travel Minis', 'New Mother Kit']]]
-      },
-      {
-        k: 'accessories', name: 'Accessories', img: '1622290291468-a28f7a7dc6a8', feat: 'Finishing touches', cols: [
-          ['Wear', ['Hats & Bonnets', 'Hair Accessories', 'Socks & Tights', 'Footwear']],
-          ['Carry', ['Diaper Bags', 'Backpacks', 'Pouches']],
-          ['Play & Sleep', ['Soft Toys', 'Blankets', 'Keepsakes']]]
-      },
-      {
-        k: 'gifts', name: 'Gifts', gift: true, img: 'images/web/gift-suitcase-set.jpg', feat: 'The keepsake case', cols: [
-          ['Occasions', ['Birth Gifts', 'Naming Ceremony', 'Birthday', 'Diwali Hampers']],
-          ['By price', ['Under ₹1,999', '₹2,000 – ₹3,999', '₹4,000 – ₹5,999', 'Luxury Hampers']],
-          ['Services', ['E-Gift Cards', 'Gift Wrapping', 'Personalisation']]]
-      },
-    ];
-
-    /* ---------- collections ---------- */
-    const COLLECTIONS = {
-      all: {
-        name: 'The Collection', eyebrow: 'Every piece', img: 'images/web/hero-festive-staircase.jpg', pos: '48% 30%',
-        desc: 'Every Elvor piece in one place — certified organic cotton, fine merino and hand finishing, crafted in India.',
-        edit: { img: 'images/web/gift-art-of-gifting.jpg', eyebrow: 'The art of gifting', title: 'The keepsake case', to: 'gifts' }
-      },
-      newborn: {
-        name: 'New Born', eyebrow: '0 – 24 months', img: 'images/web/newborn-toddlers-playing.jpg', pos: 'center 65%',
-        desc: 'Heirloom-soft first wardrobes in certified organic cotton and fine merino — hand-smocked, gently finished and made to be passed down.',
-        edit: { img: 'images/web/newborn-smocked-romper.jpg', eyebrow: 'From the atelier', title: 'Hand-smocked heirlooms', to: 'gifts' }
-      },
-      girl: {
-        name: 'Girl', eyebrow: '2 – 14 years', img: 'images/web/girl-velvet-portrait.jpg', pos: '52% 12%',
-        desc: 'Velvet, voile and hand-block prints — dresses and ethnic sets for every little celebration, and every day in between.',
-        edit: { img: '1578897367107-2828e351c8a8', eyebrow: 'Limited capsule', title: 'Elvor Special Edition', to: 'special' }
-      },
-      boy: {
-        name: 'Boy', eyebrow: '2 – 14 years', img: 'images/web/boy-blue-navy.jpg', pos: 'center 20%',
-        desc: 'Oxford shirts, merino knits and silk kurta sets — classic tailoring, cut for running, climbing and celebrating.',
-        edit: { img: 'images/web/boy-red-panda-sweater.jpg', eyebrow: 'Limited capsule', title: 'Elvor Special Edition', to: 'special' }
-      },
-      special: {
-        name: 'Elvor Special Edition', eyebrow: '2027 collection', img: 'images/web/hero-festive-staircase.jpg', pos: '48% 30%',
-        desc: 'Our limited festive capsule — velvet, silk and hand embroidery, made in small numbers by our artisans.',
-        edit: { img: 'images/web/boy-red-panda-sweater.jpg', eyebrow: 'Bestseller', title: 'The red panda sweater', to: 'boy' }
-      },
-      care: {
-        name: 'Care', eyebrow: 'Bath & body', img: 'images/web/care-gift-suitcase.jpg', pos: '35% center',
-        desc: 'Gentle, plant-based rituals for delicate skin — massage oils, balms and washes made without parabens or sulphates.',
-        edit: { img: 'images/web/gift-art-of-gifting.jpg', eyebrow: 'Ready to give', title: 'Care gift sets', to: 'gifts' }
-      },
-      accessories: {
-        name: 'Accessories', eyebrow: 'Knitwear & essentials', img: 'images/web/accessories-beanie-knitwear.jpg', pos: 'center',
-        desc: 'Finishing touches — merino bonnets, heirloom blankets, soft toys and the bags that carry it all.',
-        edit: { img: 'images/web/gift-suitcase-set.jpg', eyebrow: 'The art of gifting', title: 'The keepsake case', to: 'gifts' }
-      },
-      gifts: {
-        name: 'Gifts', eyebrow: 'The art of gifting', img: 'images/web/gift-art-of-gifting.jpg', pos: 'center 40%',
-        desc: 'Thoughtful presents for births, naming ceremonies and birthdays — wrapped by hand in our signature keepsake boxes.',
-        edit: { img: 'images/web/newborn-toddlers-playing.jpg', eyebrow: 'For the little ones', title: 'Shop New Born', to: 'newborn' }
-      },
-    };
-
-    const COLORS = { Ivory: '#f3efe6', Cream: '#efe3c4', Camel: '#c9a77c', Rose: '#e9cfc6', Coral: '#e0705c', Red: '#a8332f', Mustard: '#e9b949', Sage: '#d8e1d6', Green: '#3a9c7c', Sky: '#a9c4de', Navy: '#1d2a44', Black: '#1a1a1a' };
-    const SIZES = { newborn: ['0–3M', '3–6M', '6–12M', '12–24M'], girl: ['2–4Y', '4–8Y', '8–12Y', '12–14Y'], boy: ['2–4Y', '4–8Y', '8–12Y', '12–14Y'] };
-    const PRICES = [['0-1499', 'Under ₹1,500'], ['1500-2999', '₹1,500 – ₹2,999'], ['3000-4999', '₹3,000 – ₹4,999'], ['5000-', '₹5,000 & above']];
-
-    /* n name · c collection · s sub-category · m material · p price · sw colours · t extra collections · g gift occasion
-       (the first 8 match the landing page's New In rail) */
-    const PRODUCTS = [
-      { n: 'Hand-Smocked Romper', c: 'newborn', s: 'Bodysuits & Rompers', m: 'Cotton batiste · 6–24M', p: 2890, img: 'images/web/newborn-smocked-romper.jpg', alt: '1617331140180-e8262094733a', b: 'New', sw: ['Sky', 'Ivory', 'Rose'], t: ['gifts'], g: 'Birth Gifts' },
-      { n: 'Polka Dot Smock Blouse', c: 'girl', s: 'Tops & Blouses', m: 'Cotton voile · 2–8Y', p: 2290, img: '1518831959646-742c3a14ebf7', alt: '1503454537195-1dcabb73ffb9', b: 'Bestseller', sw: ['Ivory', 'Navy'] },
-      { n: 'Red Panda Embroidered Sweater', c: 'boy', s: 'Knitwear', m: 'Merino wool · 2–10Y', p: 3990, img: 'images/web/boy-red-panda-sweater.jpg', alt: '1519238263530-99bdd11df2ea', b: 'Bestseller', sw: ['Cream', 'Navy'], t: ['special'] },
-      { n: 'Rouge Tiered Party Dress', c: 'girl', s: 'Dresses & Frocks', m: 'Silk-cotton · 3–10Y', p: 4290, img: '1578897367107-2828e351c8a8', alt: '1518831959646-742c3a14ebf7', b: 'Festive', red: true, sw: ['Red', 'Rose'], t: ['special'] },
-      { n: 'Muslin Swaddle Trio', c: 'newborn', s: 'Muslin Swaddles', m: 'Set of 3 · 120 × 120 cm', p: 2190, img: '1544126592-807ade215a0b', alt: '1555252333-9f8e92e65df9', sw: ['Ivory', 'Sage'], t: ['gifts'], g: 'Birth Gifts' },
-      { n: 'Piqué Polo Set', c: 'boy', s: 'T-shirts & Polos', m: 'Organic piqué · 4–12Y', p: 1890, img: '1586363104862-3a5e2ab60d99', alt: '1566454544259-f4b94c3d758c', b: 'New', sw: ['Coral', 'Green', 'Sky'] },
-      { n: 'The Keepsake Gift Case', c: 'newborn', s: 'Outfit Sets', m: 'Knitwear, muslins & eau de soin', p: 8990, img: 'images/web/gift-suitcase-set.jpg', alt: '1622290291468-a28f7a7dc6a8', b: 'Gift', sw: ['Cream'], t: ['gifts'], g: 'Luxury Hampers' },
-      { n: 'Printed Cotton Frock', c: 'girl', s: 'Dresses & Frocks', m: 'Hand-block print · 1–6Y', p: 1990, img: '1560506840-ec148e82a604', alt: '1503454537195-1dcabb73ffb9', sw: ['Mustard', 'Coral'], t: ['gifts'], g: 'Birthday' },
-
-      /* New Born */
-      { n: 'Organic Cotton Sleepsuit', c: 'newborn', s: 'Sleepsuits', m: 'Organic interlock · 0–12M', p: 1490, img: '1555252333-9f8e92e65df9', alt: '1544126592-807ade215a0b', sw: ['Ivory', 'Sky'] },
-      { n: 'Embroidered Muslin Jhabla', c: 'newborn', s: 'Jhablas & Kurtas', m: 'Cotton muslin · 0–12M', p: 1290, img: '1617331140180-e8262094733a', alt: 'images/web/newborn-smocked-romper.jpg', b: 'New', sw: ['Ivory', 'Rose'], t: ['gifts'], g: 'Naming Ceremony' },
-      { n: 'Cable-Knit Cardigan', c: 'newborn', s: 'Knitwear', m: 'Fine merino · 3–24M', p: 2490, img: '1519238263530-99bdd11df2ea', alt: '1555252333-9f8e92e65df9', sw: ['Ivory', 'Camel'] },
-      { n: 'Pointelle Bodysuit Pair', c: 'newborn', s: 'Bodysuits & Rompers', m: 'Organic pointelle · 0–12M', p: 1690, img: '1544126592-807ade215a0b', alt: '1617331140180-e8262094733a', sw: ['Rose', 'Ivory'] },
-      { n: 'Merino Bonnet & Booties', c: 'newborn', s: 'Mittens & Booties', m: 'Hand-knitted merino · 0–6M', p: 1890, img: 'images/web/accessories-beanie-knitwear.jpg', alt: '1622290291468-a28f7a7dc6a8', sw: ['Camel', 'Ivory'], t: ['accessories', 'gifts'], g: 'Birth Gifts' },
-      { n: 'Cellular Cotton Blanket', c: 'newborn', s: 'Blankets', m: 'Organic cotton · 70 × 90 cm', p: 2390, img: '1555252333-9f8e92e65df9', alt: '1544126592-807ade215a0b', sw: ['Sage', 'Ivory'] },
-      { n: 'Smocked Bib Trio', c: 'newborn', s: 'Bibs & Burp Cloths', m: 'Cotton batiste · Set of 3', p: 990, img: 'images/web/newborn-smocked-romper.jpg', alt: '1544126592-807ade215a0b', sw: ['Sky', 'Rose'] },
-
-      /* Girl */
-      { n: 'Velvet Lace-Collar Dress', c: 'girl', s: 'Dresses & Frocks', m: 'Cotton velvet · 2–10Y', p: 4590, img: 'images/web/girl-velvet-portrait.jpg', alt: '1578897367107-2828e351c8a8', b: 'Festive', red: true, sw: ['Black', 'Navy'], t: ['special'] },
-      { n: 'Gota Patti Lehenga Set', c: 'girl', s: 'Lehengas & Ethnic', m: 'Silk-chanderi · 2–12Y', p: 5490, img: '1578897367107-2828e351c8a8', alt: '1560506840-ec148e82a604', b: 'Festive', red: true, sw: ['Red', 'Mustard'], t: ['special'] },
-      { n: 'Chikankari Kurta Set', c: 'girl', s: 'Lehengas & Ethnic', m: 'Hand-embroidered mul · 2–12Y', p: 3290, img: '1503454537195-1dcabb73ffb9', alt: '1518831959646-742c3a14ebf7', sw: ['Ivory', 'Rose'] },
-      { n: 'Broderie Anglaise Blouse', c: 'girl', s: 'Tops & Blouses', m: 'Organic cotton · 2–10Y', p: 1890, img: '1518831959646-742c3a14ebf7', alt: '1503454537195-1dcabb73ffb9', sw: ['Ivory'] },
-      { n: 'Linen Pleated Skirt', c: 'girl', s: 'Skirts & Shorts', m: 'Washed linen · 2–12Y', p: 1790, img: '1560506840-ec148e82a604', alt: '1578897367107-2828e351c8a8', sw: ['Camel', 'Navy'] },
-      { n: 'Floral Co-ord Set', c: 'girl', s: 'Co-ord Sets', m: 'Cotton poplin · 2–8Y', p: 2590, img: '1503454537195-1dcabb73ffb9', alt: '1560506840-ec148e82a604', b: 'New', sw: ['Rose', 'Sage'] },
-      { n: 'Smocked Nightdress', c: 'girl', s: 'Nightwear', m: 'Cotton lawn · 2–10Y', p: 1590, img: '1518831959646-742c3a14ebf7', alt: '1560506840-ec148e82a604', sw: ['Sky', 'Ivory'] },
-
-      /* Boy */
-      { n: 'Oxford Shirt & Cord Set', c: 'boy', s: 'Shirts', m: 'Oxford cotton & corduroy · 2–10Y', p: 3490, img: 'images/web/boy-blue-navy.jpg', alt: '1566454544259-f4b94c3d758c', b: 'New', sw: ['Sky', 'Navy'] },
-      { n: 'Linen Mandarin Shirt', c: 'boy', s: 'Shirts', m: 'Washed linen · 2–12Y', p: 1990, img: '1566454544259-f4b94c3d758c', alt: '1586363104862-3a5e2ab60d99', sw: ['Ivory', 'Sky'] },
-      { n: 'Silk Bandhgala Kurta Set', c: 'boy', s: 'Kurta Sets', m: 'Silk blend · 2–12Y', p: 4890, img: '1519238263530-99bdd11df2ea', alt: 'images/web/boy-blue-navy.jpg', b: 'Festive', red: true, sw: ['Ivory', 'Navy'], t: ['special'] },
-      { n: 'Cotton Chino Shorts', c: 'boy', s: 'Shorts & Trousers', m: 'Organic twill · 2–12Y', p: 1490, img: '1586363104862-3a5e2ab60d99', alt: '1566454544259-f4b94c3d758c', sw: ['Camel', 'Navy'] },
-      { n: 'Corduroy Trousers', c: 'boy', s: 'Shorts & Trousers', m: 'Baby-wale cord · 2–12Y', p: 1990, img: 'images/web/boy-blue-navy.jpg', alt: '1519238263530-99bdd11df2ea', sw: ['Navy', 'Camel'] },
-      { n: 'Striped Breton Tee', c: 'boy', s: 'T-shirts & Polos', m: 'Organic jersey · 2–12Y', p: 1190, img: '1566454544259-f4b94c3d758c', alt: '1586363104862-3a5e2ab60d99', sw: ['Navy', 'Ivory'] },
-      { n: 'Cable Crew-Neck Sweater', c: 'boy', s: 'Knitwear', m: 'Merino wool · 2–12Y', p: 2790, img: '1519238263530-99bdd11df2ea', alt: 'images/web/boy-red-panda-sweater.jpg', sw: ['Ivory', 'Navy'] },
-
-      /* Care */
-      { n: 'Ayurvedic Baby Massage Oil', c: 'care', s: 'Massage Oils', m: 'Cold-pressed sesame & almond · 100 ml', p: 890, img: 'images/web/care-gift-suitcase.jpg', alt: '1533483595632-c5f0e57a1936', b: 'Bestseller', sw: [] },
-      { n: 'Calendula Body Lotion', c: 'care', s: 'Lotions & Balms', m: 'Calendula & shea · 200 ml', p: 790, img: '1533483595632-c5f0e57a1936', alt: 'images/web/care-gift-suitcase.jpg', sw: [] },
-      { n: 'Gentle Top-to-Toe Wash', c: 'care', s: 'Wash & Shampoo', m: 'Tear-free · 250 ml', p: 690, img: '1533483595632-c5f0e57a1936', alt: 'images/web/care-gift-suitcase.jpg', sw: [] },
-      { n: 'Zinc Nappy Balm', c: 'care', s: 'Nappy Care', m: 'Zinc & beeswax · 75 g', p: 590, img: 'images/web/care-gift-suitcase.jpg', alt: '1533483595632-c5f0e57a1936', sw: [] },
-      { n: 'Eau de Soin', c: 'care', s: 'Eau de Soin', m: 'Alcohol-free scented water · 100 ml', p: 1890, img: '1533483595632-c5f0e57a1936', alt: 'images/web/care-gift-suitcase.jpg', b: 'New', sw: [] },
-      { n: 'The Care Case', c: 'care', s: 'Care Gift Sets', m: 'Oil, lotion, wash, brush & towel', p: 4990, img: 'images/web/care-gift-suitcase.jpg', alt: 'images/web/gift-art-of-gifting.jpg', b: 'Gift', sw: [], t: ['gifts'], g: 'Luxury Hampers' },
-
-      /* Accessories */
-      { n: 'Merino Pom Beanie', c: 'accessories', s: 'Hats & Bonnets', m: 'Fine merino · 6M–6Y', p: 1290, img: 'images/web/accessories-beanie-knitwear.jpg', alt: '1622290291468-a28f7a7dc6a8', sw: ['Camel', 'Ivory'] },
-      { n: 'Knitted Mittens & Socks', c: 'accessories', s: 'Socks & Tights', m: 'Merino blend · 0–24M', p: 990, img: 'images/web/accessories-beanie-knitwear.jpg', alt: '1622290291468-a28f7a7dc6a8', sw: ['Cream', 'Sage'] },
-      { n: 'Heirloom Knit Blanket', c: 'accessories', s: 'Blankets', m: 'Cable-knit merino · 80 × 100 cm', p: 3490, img: '1622290291468-a28f7a7dc6a8', alt: 'images/web/accessories-beanie-knitwear.jpg', sw: ['Ivory', 'Camel'], t: ['gifts'], g: 'Birth Gifts' },
-      { n: 'Knitted Bunny', c: 'accessories', s: 'Soft Toys', m: 'Organic cotton knit · 30 cm', p: 1490, img: '1622290291468-a28f7a7dc6a8', alt: 'images/web/care-gift-suitcase.jpg', b: 'New', sw: ['Cream'], t: ['gifts'], g: 'Birthday' },
-      { n: 'Quilted Diaper Bag', c: 'accessories', s: 'Diaper Bags', m: 'Quilted cotton & vegan leather', p: 4290, img: 'images/web/gift-suitcase-set.jpg', alt: '1622290291468-a28f7a7dc6a8', sw: ['Navy', 'Camel'] },
-      { n: 'Liberty Hair Bow Pair', c: 'accessories', s: 'Hair Accessories', m: 'Printed cotton · One size', p: 590, img: '1622290291468-a28f7a7dc6a8', alt: 'images/web/accessories-beanie-knitwear.jpg', sw: ['Rose', 'Sky'] },
-
-      /* Gift-only */
-      { n: 'Festive Diwali Hamper', c: 'gifts', s: 'Diwali Hampers', m: 'Kurta set, diya & sweets box', p: 6490, img: 'images/web/gift-art-of-gifting.jpg', alt: 'images/web/gift-suitcase-set.jpg', b: 'Festive', red: true, sw: [], g: 'Diwali Hampers' },
-    ];
-
-    const inr = n => '₹' + n.toLocaleString('en-IN');
-    const slug = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-    const PDP = p => 'product.html?p=' + slug(p.n);
-
-    /* ---------- header nav + mega menu ---------- */
-    const nav = document.getElementById('nav'), mnav = document.getElementById('mnav');
-    /* menu item → collection URL (sub-category, age band, price band or edit) */
-    const MENU_PRICE = { 'Under ₹1,999': '0-1999', '₹2,000 – ₹3,999': '2000-3999', '₹4,000 – ₹5,999': '4000-5999', 'Luxury Hampers': '6000-' };
-    function menuLink(k, item, group) {
-      const u = new URLSearchParams({ c: k });
-      if (!item) return 'collection.html?' + u;
-      if (item === 'The Festive Edit') return 'collection.html?c=special';
-      if (group === 'By age') u.set('size', item.replace(' – ', '–').replace(' years', 'Y').replace(' months', 'M'));
-      else if (group === 'By price') u.set('price', MENU_PRICE[item] || '');
-      else u.set('sub', item);
-      return 'collection.html?' + u;
-    }
-    MENU.forEach(m => {
-      const cols = m.cols.map(([h, items]) => `<div><h4>${h}</h4><ul>${items.map(i => `<li><a href="${menuLink(m.k, i, h)}">${i}</a></li>`).join('')}</ul></div>`).join('');
-      nav.insertAdjacentHTML('beforeend', `<li><a href="${menuLink(m.k)}" class="nav-link${m.gift ? ' gift' : ''}">${m.name}</a>
-    <div class="mega"><div class="mega-inner">${cols}<a href="${menuLink(m.k)}" class="mega-feature"><img loading="lazy" src="${IMG(m.img, 700)}" alt=""><span>${m.feat}</span></a></div></div></li>`);
-      const sub = m.cols.map(([h, items]) => `<h5>${h}</h5><ul>${items.map(i => `<li><a href="${menuLink(m.k, i, h)}">${i}</a></li>`).join('')}</ul>`).join('');
-      mnav.insertAdjacentHTML('beforeend', `<li><button class="${m.gift ? 'gift' : ''}" aria-expanded="false">${m.name}<svg><use href="#i-right"/></svg></button>
-    <div class="m-sub"><div>${sub}<a href="${menuLink(m.k)}" class="m-all">Shop all ${m.name}</a></div></div></li>`);
-    });
-    mnav.addEventListener('click', e => {
-      const b = e.target.closest('li > button'); if (!b) return;
-      const li = b.parentElement, open = !li.classList.contains('open');
-      mnav.querySelectorAll(':scope > li.open').forEach(x => { x.classList.remove('open'); x.firstElementChild.setAttribute('aria-expanded', 'false'); });
-      if (open) { li.classList.add('open'); b.setAttribute('aria-expanded', 'true'); }
-    });
+    /* header nav + mega menu: built by js/menu.js */
 
     /* footer accordions (mobile only — CSS ignores .open on wider screens) */
     document.querySelectorAll('.foot-col h4').forEach(h => {
@@ -4678,13 +4754,6 @@
     const idx = PRODUCTS.findIndex(p => slug(p.n) === new URLSearchParams(location.search).get('p'));
     const P = PRODUCTS[idx];
 
-    /* age bands a product covers, read from its "2–8Y" / "0–12M" range */
-    function sizesOf(p) {
-      const bands = SIZES[p.c]; if (!bands) return [];
-      const r = p.m.match(/(\d+)–(\d+)[MY]/); if (!r) return bands;
-      const lo = +r[1], hi = +r[2];
-      return bands.filter(b => { const [a, z] = b.match(/\d+/g).map(Number); return a < hi && z > lo; });
-    }
 
     /* copy that differs by collection */
     const WEAR_CARE = ['Machine wash cold on a gentle cycle', 'Wash inside out with similar colours', 'Dry flat in the shade', 'Cool iron on the reverse; do not tumble dry'];
@@ -4701,7 +4770,12 @@
       Y: [['2–4Y', '92–104', '13–17'], ['4–8Y', '104–128', '17–26'], ['8–12Y', '128–152', '26–40'], ['12–14Y', '152–164', '40–50']],
     };
 
-    if (!P) {
+    /* product.html?look=<slug> shows a look (see LOOKS in js/products.js) instead of one product */
+    const LOOK = LOOKS.find(L => slug(L.n) === new URLSearchParams(location.search).get('look'));
+
+    if (LOOK) {
+      renderLook(LOOK);
+    } else if (!P) {
       document.title = 'Product not found — Elvor';
       $('pdp').outerHTML = `<section class="pdp-missing"><p class="display">This piece has moved on</p><p style="color:var(--ink-soft)">It may have sold out or the link may be out of date.</p><a class="btn btn-dark" href="collection.html">Shop the collection</a></section>`;
       $('pdpBar').remove();
@@ -4710,11 +4784,144 @@
       renderProduct();
     }
 
+    /* ---------- shared by single products and looks (both use the same page layout) ---------- */
+
+    /* full-bleed gallery strip + full-screen viewer (big image, round arrows, thumbnail strip,
+       and the page's own buy bar pinned along the bottom). onClose runs when the viewer closes. */
+    function initGallery(imgs, name, onClose) {
+      let cur = 0;
+      $('pdpTrack').innerHTML = imgs.map((s, k) => `<figure data-z="${k}"><img src="${IMG(s, 1100)}" alt="${k ? `${name}, view ${k + 1}` : name}" ${k > 1 ? 'loading="lazy"' : ''}></figure>`).join('');
+      $('pdpDots').innerHTML = imgs.map((_, k) => `<i class="${k ? '' : 'on'}"></i>`).join('');
+      $('pdpTrack').addEventListener('scroll', e => {
+        const k = Math.round(e.target.scrollLeft / e.target.clientWidth);
+        [...$('pdpDots').children].forEach((d, j) => d.classList.toggle('on', j === k));
+      }, { passive: true });
+
+      const zoom = $('pdpZoom');
+      $('zoomThumbs').innerHTML = imgs.map((s, k) => `<button data-zt="${k}" aria-label="View image ${k + 1} of ${imgs.length}"><img src="${IMG(s, 240)}" alt=""></button>`).join('');
+      const showZoom = k => {
+        cur = (k + imgs.length) % imgs.length;
+        $('zoomImg').src = IMG(imgs[cur], 2000); $('zoomImg').alt = `${name}, image ${cur + 1} of ${imgs.length}`;
+        [...$('zoomThumbs').children].forEach((b, j) => b.setAttribute('aria-current', j === cur));
+      };
+      const fitZoom = () => document.documentElement.style.setProperty('--zoom-bar', innerWidth > 720 ? $('pdpBuy').offsetHeight + 'px' : '0px');
+      const openZoom = k => {
+        showZoom(k); zoom.hidden = false;
+        document.body.style.overflow = 'hidden'; document.body.classList.add('zooming');
+        fitZoom(); $('zoomClose').focus();
+      };
+      const closeZoom = () => { zoom.hidden = true; document.body.style.overflow = ''; document.body.classList.remove('zooming'); onClose && onClose(); };
+      $('pdpTrack').addEventListener('click', e => { const f = e.target.closest('[data-z]'); if (f) openZoom(+f.dataset.z); });
+      $('zoomClose').onclick = closeZoom;
+      $('zoomPrev').onclick = () => showZoom(cur - 1);
+      $('zoomNext').onclick = () => showZoom(cur + 1);
+      $('zoomThumbs').addEventListener('click', e => { const b = e.target.closest('[data-zt]'); if (b) showZoom(+b.dataset.zt); });
+      addEventListener('resize', () => { if (!zoom.hidden) fitZoom(); });
+      /* swipe on touch screens */
+      let zx = null;
+      zoom.addEventListener('touchstart', e => { zx = e.touches[0].clientX; }, { passive: true });
+      zoom.addEventListener('touchend', e => {
+        if (zx === null) return; const dx = e.changedTouches[0].clientX - zx; zx = null;
+        if (Math.abs(dx) > 40) showZoom(cur + (dx < 0 ? 1 : -1));
+      });
+      /* Escape closes the viewer unless a picker panel is open (initPops closes that first);
+         this is registered before initPops so it sees the panel before it closes */
+      addEventListener('keydown', e => {
+        if (zoom.hidden) return;
+        if (e.key === 'Escape' && !document.querySelector('.pdp-pop:not([hidden])')) closeZoom();
+        if (e.key === 'ArrowLeft') showZoom(cur - 1);
+        if (e.key === 'ArrowRight') showZoom(cur + 1);
+      });
+    }
+
+    /* buy-bar pickers: each [button id, panel id] pair opens a small panel above (or below) it */
+    function initPops(pairs) {
+      const closePops = () => pairs.forEach(([b, p]) => { if ($(b)) { $(b).setAttribute('aria-expanded', 'false'); $(p).hidden = true; } });
+      const openPop = (b, p) => {
+        const open = $(p).hidden; closePops(); if (!open) return;
+        $(p).classList.toggle('down', $(b).getBoundingClientRect().top < innerHeight * .4);
+        $(b).setAttribute('aria-expanded', 'true'); $(p).hidden = false;
+        $(p).querySelector('[aria-checked="true"], button:not(:disabled)')?.focus();
+      };
+      pairs.forEach(([b, p]) => $(b) && ($(b).onclick = () => openPop(b, p)));
+      /* composedPath: a click that redraws the panel still counts as inside it */
+      document.addEventListener('click', e => { if (!e.composedPath().some(n => n.classList && n.classList.contains('pdp-pick'))) closePops(); });
+      addEventListener('keydown', e => { if (e.key === 'Escape') closePops(); });
+      return { openPop, closePops };
+    }
+
+    /* tabs under the buy bar; [key, heading, html] each. Links with data-tab elsewhere open a tab. */
+    function initTabs(TABS) {
+      $('pdpTablist').innerHTML = TABS.map(([k, h], j) => `<button role="tab" id="tab-${k}" aria-controls="panel-${k}" aria-selected="${!j}" tabindex="${j ? -1 : 0}" data-tab="${k}">${h}</button>`).join('');
+      $('pdpPanels').innerHTML = TABS.map(([k, , b], j) => `<div class="pdp-panel" role="tabpanel" id="panel-${k}" aria-labelledby="tab-${k}" ${j ? 'hidden' : ''}>${b}</div>`).join('');
+      const showTab = k => {
+        TABS.forEach(([t]) => {
+          const on = t === k;
+          $('tab-' + t).setAttribute('aria-selected', on); $('tab-' + t).tabIndex = on ? 0 : -1;
+          $('panel-' + t).hidden = !on;
+        });
+      };
+      document.addEventListener('click', e => {
+        const t = e.target.closest('[data-tab]'); if (!t) return;
+        showTab(t.dataset.tab);
+        if (!t.closest('#pdpTablist')) { e.preventDefault(); $('pdpTabs').scrollIntoView({ behavior: 'smooth' }); }
+      });
+      $('pdpTablist').addEventListener('keydown', e => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        const keys = TABS.map(t => t[0]), cur = keys.indexOf(document.activeElement.dataset.tab);
+        const nxt = keys[(cur + (e.key === 'ArrowRight' ? 1 : -1) + keys.length) % keys.length];
+        showTab(nxt); $('tab-' + nxt).focus();
+      });
+    }
+
+    /* shipping and care tabs, the same for products and looks */
+    /* (function declarations, not consts: the page renders above this point) */
+    function eta(d) { const x = new Date(); x.setDate(x.getDate() + d); return x.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' }); }
+    function shipTab() {
+      return ['ship', 'Shipping and returns', `<div><h3>Delivery</h3><ul><li>Order today, arrives <b>${eta(3)} – ${eta(5)}</b></li><li>Free standard delivery on orders over ₹1,999</li><li>Express delivery in metro cities: 1–2 days</li><li>Cash on delivery available</li></ul></div>
+          <div><h3>Returns &amp; exchanges</h3><ul><li>Free exchanges within 15 days of delivery</li><li>Unworn, with original tags and packaging</li><li>Book a pickup from your account</li></ul></div>`];
+    }
+    function careTab(list) {
+      return ['care', 'With care', `<div><h3>Caring for your piece</h3><ul>${list.map(c => `<li>${c}</li>`).join('')}</ul></div>
+          <div><h3>Gift wrapping</h3><p>Every order can be wrapped in our keepsake box with tissue and a handwritten message card — add it free at checkout.</p></div>`];
+    }
+
+    /* phone: show the sticky add-to-bag bar once the main button has scrolled above the viewport */
+    function observeBar(btn) {
+      new IntersectionObserver(([en]) => {
+        const on = !en.isIntersecting && en.boundingClientRect.top < 0;
+        $('pdpBar').classList.toggle('on', on);
+        $('pdpBar').setAttribute('aria-hidden', !on);
+        $('pdpBarAdd').tabIndex = on ? 0 : -1;
+        document.body.classList.toggle('pdp-bar-on', on);
+      }).observe(btn);
+    }
+
+    function initWish() {
+      $('pdpWish').onclick = e => {
+        const on = e.currentTarget.getAttribute('aria-pressed') !== 'true';
+        e.currentTarget.setAttribute('aria-pressed', on);
+        toast(on ? 'Saved to your wishlist' : 'Removed from wishlist');
+      };
+    }
+
+    /* size guide drawer body for one piece */
+    function sizeGuideHTML(p) {
+      const bands = SIZES[p.c] || [], D = DETAILS[p.c] || DETAILS.gifts;
+      const unit = bands[0] && bands[0].endsWith('M') ? 'M' : 'Y';
+      return `<p style="color:var(--ink-soft)">${p === P ? '' : `<b style="color:var(--ink);font-weight:500">${p.n}</b><br>`}Measurements are of the child, in centimetres and kilograms.</p>
+          <table class="sg-table"><thead><tr><th>Age</th><th>Height (cm)</th><th>Weight (kg)</th></tr></thead>
+          <tbody>${SIZE_GUIDE[unit].map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody></table>
+          <p class="sg-note">${D.fit}</p>
+          <p class="sg-note">Need help? WhatsApp our stylists on +91 80000 00000.</p>`;
+    }
+
+    /* ---------- single product ---------- */
     function renderProduct() {
       const COL = COLLECTIONS[P.c], D = DETAILS[P.c] || DETAILS.gifts;
       const bands = SIZES[P.c] || [], avail = sizesOf(P);
       const mat = P.m.split('·')[0].trim();
-      const st = { color: P.sw[0] || null, size: avail.length === 1 ? avail[0] : null, img: 0 };
+      const st = { color: P.sw[0] || null, size: avail.length === 1 ? avail[0] : null };
 
       document.title = `${P.n} — Elvor`;
       document.querySelector('meta[name="description"]')?.setAttribute('content', `${P.n} by Elvor — ${P.m}. ${inr(P.p)}.`);
@@ -4724,44 +4931,8 @@
       $('pdpCrumbs').innerHTML = `<a href="index.html">Home</a><span>/</span><a href="collection.html?c=${P.c}">${COL.name}</a>${subLink}<span>/</span><b>${P.n}</b>`;
 
       /* gallery: product shots first, then lifestyle images from the collection */
-      const imgs = [...new Set([P.img, P.alt, COL.img, COL.edit.img, ...PRODUCTS.filter(p => p.c === P.c).map(p => p.img)])].slice(0, 4);
-      $('pdpTrack').innerHTML = imgs.map((s, k) => `<figure data-z="${k}"><img src="${IMG(s, 1100)}" alt="${k ? `${P.n}, view ${k + 1}` : P.n}" ${k > 1 ? 'loading="lazy"' : ''}></figure>`).join('');
-      $('pdpDots').innerHTML = imgs.map((_, k) => `<i class="${k ? '' : 'on'}"></i>`).join('');
-      $('pdpTrack').addEventListener('scroll', e => {
-        const k = Math.round(e.target.scrollLeft / e.target.clientWidth);
-        [...$('pdpDots').children].forEach((d, j) => d.classList.toggle('on', j === k));
-      }, { passive: true });
-
-      /* zoom */
-      /* full-screen viewer: big image, round arrows, thumbnail strip (selected one highlighted),
-         and the page's own buy bar pinned along the bottom */
-      const zoom = $('pdpZoom');
-      $('zoomThumbs').innerHTML = imgs.map((s, k) => `<button data-zt="${k}" aria-label="View image ${k + 1} of ${imgs.length}"><img src="${IMG(s, 240)}" alt=""></button>`).join('');
-      const showZoom = k => {
-        st.img = (k + imgs.length) % imgs.length;
-        $('zoomImg').src = IMG(imgs[st.img], 2000); $('zoomImg').alt = `${P.n}, image ${st.img + 1} of ${imgs.length}`;
-        [...$('zoomThumbs').children].forEach((b, j) => b.setAttribute('aria-current', j === st.img));
-      };
-      const fitZoom = () => document.documentElement.style.setProperty('--zoom-bar', innerWidth > 720 ? $('pdpBuy').offsetHeight + 'px' : '0px');
-      const openZoom = k => {
-        showZoom(k); zoom.hidden = false;
-        document.body.style.overflow = 'hidden'; document.body.classList.add('zooming');
-        fitZoom(); $('zoomClose').focus();
-      };
-      const closeZoom = () => { zoom.hidden = true; document.body.style.overflow = ''; document.body.classList.remove('zooming'); closePops(); };
-      $('pdpTrack').addEventListener('click', e => { const f = e.target.closest('[data-z]'); if (f) openZoom(+f.dataset.z); });
-      $('zoomClose').onclick = closeZoom;
-      $('zoomPrev').onclick = () => showZoom(st.img - 1);
-      $('zoomNext').onclick = () => showZoom(st.img + 1);
-      $('zoomThumbs').addEventListener('click', e => { const b = e.target.closest('[data-zt]'); if (b) showZoom(+b.dataset.zt); });
-      addEventListener('resize', () => { if (!zoom.hidden) fitZoom(); });
-      /* swipe on touch screens */
-      let zx = null;
-      zoom.addEventListener('touchstart', e => { zx = e.touches[0].clientX; }, { passive: true });
-      zoom.addEventListener('touchend', e => {
-        if (zx === null) return; const dx = e.changedTouches[0].clientX - zx; zx = null;
-        if (Math.abs(dx) > 40) showZoom(st.img + (dx < 0 ? 1 : -1));
-      });
+      let pops;
+      initGallery([...new Set([P.img, P.alt, COL.img, COL.edit.img, ...PRODUCTS.filter(p => p.c === P.c).map(p => p.img)])].slice(0, 4), P.n, () => pops.closePops());
 
       /* title + price */
       $('pdpBadge').textContent = P.b || '';
@@ -4774,27 +4945,8 @@
       $('pdpBarPrice').textContent = inr(P.p);
 
       /* pickers: "+ Colour" / "+ Age" open a small panel */
-      const pops = [['pdpColorBtn', 'pdpColorPop'], ['pdpSizeBtn', 'pdpSizePop']];
-      const closePops = () => pops.forEach(([b, p]) => { if ($(b)) { $(b).setAttribute('aria-expanded', 'false'); $(p).hidden = true; } });
-      const openPop = (b, p) => {
-        const open = $(p).hidden; closePops(); if (!open) return;
-        $(p).classList.toggle('down', $(b).getBoundingClientRect().top < innerHeight * .4);
-        $(b).setAttribute('aria-expanded', 'true'); $(p).hidden = false;
-        $(p).querySelector('[aria-checked="true"], button:not(:disabled)')?.focus();
-      };
-      pops.forEach(([b, p]) => $(b) && ($(b).onclick = () => openPop(b, p)));
-      document.addEventListener('click', e => { if (!e.target.closest('.pdp-pick')) closePops(); });
-      addEventListener('keydown', e => {
-        if (e.key !== 'Escape') return;
-        const popOpen = document.querySelector('.pdp-pop:not([hidden])');
-        if (!zoom.hidden && !popOpen) return closeZoom();
-        closePops();
-      });
-      addEventListener('keydown', e => {
-        if (zoom.hidden) return;
-        if (e.key === 'ArrowLeft') showZoom(st.img - 1);
-        if (e.key === 'ArrowRight') showZoom(st.img + 1);
-      });
+      pops = initPops([['pdpColorBtn', 'pdpColorPop'], ['pdpSizeBtn', 'pdpSizePop']]);
+      const { openPop, closePops } = pops;
 
       /* colours */
       if (!P.sw.length) $('pdpColorWrap').remove();
@@ -4821,12 +4973,7 @@
           drawSizes(); closePops(); $('pdpSizeBtn').focus();
         });
 
-        const unit = bands[0].endsWith('M') ? 'M' : 'Y';
-        $('sizeGuideBody').innerHTML = `<p style="color:var(--ink-soft)">Measurements are of the child, in centimetres and kilograms.</p>
-          <table class="sg-table"><thead><tr><th>Age</th><th>Height (cm)</th><th>Weight (kg)</th></tr></thead>
-          <tbody>${SIZE_GUIDE[unit].map(r => `<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`).join('')}</tbody></table>
-          <p class="sg-note">${D.fit}</p>
-          <p class="sg-note">Need help? WhatsApp our stylists on +91 80000 00000.</p>`;
+        $('sizeGuideBody').innerHTML = sizeGuideHTML(P);
       }
 
       /* add to bag: without an age, open the age panel instead */
@@ -4836,7 +4983,8 @@
           $('pdpErr').textContent = 'Please select an age';
           w.classList.add('err'); w.classList.remove('shake'); void w.offsetWidth; w.classList.add('shake');
           if (innerWidth <= 720) w.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          if ($('pdpSizePop').hidden) openPop('pdpSizeBtn', 'pdpSizePop');
+          /* after this click finishes, or the outside-click handler closes it straight away */
+          setTimeout(() => { if ($('pdpSizePop').hidden) openPop('pdpSizeBtn', 'pdpSizePop'); });
           return;
         }
         addToBag(idx, st.size || 'One size');
@@ -4844,46 +4992,18 @@
       };
       $('pdpAdd').onclick = add;
       $('pdpBarAdd').onclick = add;
-
-      $('pdpWish').onclick = e => {
-        const on = e.currentTarget.getAttribute('aria-pressed') !== 'true';
-        e.currentTarget.setAttribute('aria-pressed', on);
-        toast(on ? 'Saved to your wishlist' : 'Removed from wishlist');
-      };
+      initWish();
 
       /* tabs */
-      const eta = d => { const x = new Date(); x.setDate(x.getDate() + d); return x.toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short' }); };
       const desc = P.c === 'care'
         ? `${P.n} with ${mat.toLowerCase()}, blended in small batches in India.`
         : `${P.n} in ${mat.toLowerCase()}, designed in our studio and finished by hand by Indian artisans.`;
-      const TABS = [
+      initTabs([
         ['details', 'Details', `<div><p>${desc}</p><p>${D.fit}</p></div>
           <div><h3>Composition</h3><p>${P.m}</p>${P.sw.length ? `<h3 style="margin-top:22px">Colours</h3><p>${P.sw.join(', ')}</p>` : ''}<h3 style="margin-top:22px">Made in</h3><p>India</p></div>`],
-        ['ship', 'Shipping and returns', `<div><h3>Delivery</h3><ul><li>Order today, arrives <b>${eta(3)} – ${eta(5)}</b></li><li>Free standard delivery on orders over ₹1,999</li><li>Express delivery in metro cities: 1–2 days</li><li>Cash on delivery available</li></ul></div>
-          <div><h3>Returns &amp; exchanges</h3><ul><li>Free exchanges within 15 days of delivery</li><li>Unworn, with original tags and packaging</li><li>Book a pickup from your account</li></ul></div>`],
-        ['care', 'With care', `<div><h3>Caring for your piece</h3><ul>${D.care.map(c => `<li>${c}</li>`).join('')}</ul></div>
-          <div><h3>Gift wrapping</h3><p>Every order can be wrapped in our keepsake box with tissue and a handwritten message card — add it free at checkout.</p></div>`],
-      ];
-      $('pdpTablist').innerHTML = TABS.map(([k, h], j) => `<button role="tab" id="tab-${k}" aria-controls="panel-${k}" aria-selected="${!j}" tabindex="${j ? -1 : 0}" data-tab="${k}">${h}</button>`).join('');
-      $('pdpPanels').innerHTML = TABS.map(([k, , b], j) => `<div class="pdp-panel" role="tabpanel" id="panel-${k}" aria-labelledby="tab-${k}" ${j ? 'hidden' : ''}>${b}</div>`).join('');
-      const showTab = k => {
-        TABS.forEach(([t]) => {
-          const on = t === k;
-          $('tab-' + t).setAttribute('aria-selected', on); $('tab-' + t).tabIndex = on ? 0 : -1;
-          $('panel-' + t).hidden = !on;
-        });
-      };
-      document.addEventListener('click', e => {
-        const t = e.target.closest('[data-tab]'); if (!t) return;
-        showTab(t.dataset.tab);
-        if (!t.closest('#pdpTablist')) { e.preventDefault(); $('pdpTabs').scrollIntoView({ behavior: 'smooth' }); }
-      });
-      $('pdpTablist').addEventListener('keydown', e => {
-        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
-        const keys = TABS.map(t => t[0]), cur = keys.indexOf(document.activeElement.dataset.tab);
-        const nxt = keys[(cur + (e.key === 'ArrowRight' ? 1 : -1) + keys.length) % keys.length];
-        showTab(nxt); $('tab-' + nxt).focus();
-      });
+        shipTab(),
+        careTab(D.care),
+      ]);
 
       /* you may also like: same collection first, then the rest */
       const same = PRODUCTS.map((p, i) => ({ p, i })).filter(x => x.i !== idx && (x.p.c === P.c || (x.p.t || []).includes(P.c) || (P.t || []).includes(x.p.c)));
@@ -4891,14 +5011,134 @@
       $('relEyebrow').textContent = `More from ${COL.name}`;
       renderRail([...same, ...rest].slice(0, 8));
 
-      /* phone: show sticky add-to-bag once the main button has scrolled above the viewport */
-      new IntersectionObserver(([en]) => {
-        const on = !en.isIntersecting && en.boundingClientRect.top < 0;
-        $('pdpBar').classList.toggle('on', on);
-        $('pdpBar').setAttribute('aria-hidden', !on);
-        $('pdpBarAdd').tabIndex = on ? 0 : -1;
-        document.body.classList.toggle('pdp-bar-on', on);
-      }).observe($('pdpAdd'));
+      observeBar($('pdpAdd'));
+    }
+
+    /* ---------- look (product.html?look=…) ----------
+       The same layout as a single product: gallery strip, one-line buy bar, tabs, sticky bar.
+       In the buy bar "+ Colour" becomes "+ Pieces" (leave pieces out of the look) and "+ Age"
+       holds an age row for every piece that comes in ages. The first tab, "The pieces", shows
+       each piece with its colour, age, size guide, product link and Remove / Add back. */
+    function renderLook(L) {
+      const COL = COLLECTIONS[L.c] || COLLECTIONS.all;
+      const items = lookPieces(L).map(p => {
+        const avail = sizesOf(p);
+        return { p, i: PRODUCTS.indexOf(p), bands: SIZES[p.c] || [], avail, size: avail.length === 1 ? avail[0] : null, color: p.sw[0] || null, on: true, err: false };
+      });
+      const sized = items.filter(x => x.bands.length);
+
+      document.title = `${L.n} — Elvor`;
+      document.querySelector('meta[name="description"]')?.setAttribute('content', `${L.n} — a complete Elvor look of ${items.length} pieces.`);
+      $('pdp').classList.add('pdp-look');
+      $('pdpCrumbs').innerHTML = `<a href="index.html">Home</a><span>/</span><a href="collection.html?c=${L.c}">${COL.name}</a><span>/</span><b>${L.n}</b>`;
+
+      /* gallery: the outfit photos first, then each piece */
+      let pops;
+      initGallery([...new Set([L.img, L.alt, ...items.map(x => x.p.img)].filter(Boolean))].slice(0, 6), L.n, () => pops.closePops());
+
+      $('pdpBadge').textContent = L.b || 'The look';
+      $('pdpBadge').classList.toggle('red', !!L.red);
+      $('pdpName').textContent = L.n;
+      $('pdpName').title = L.n;
+      $('pdpBarName').textContent = L.n;
+
+      /* the two picker slots */
+      $('pdpColorBtn').innerHTML = '<span class="plus">+</span> Pieces <span class="pdp-pick-val" id="pdpColorVal"></span>';
+      $('pdpColorPop').setAttribute('role', 'group');
+      $('pdpColorPop').setAttribute('aria-label', 'Pieces in this look');
+      if (!sized.length) $('pdpSizeWrap').remove();
+      else $('sizeGuideBody').innerHTML = sizeGuideHTML(sized[0].p);
+      pops = initPops([['pdpColorBtn', 'pdpColorPop'], ['pdpSizeBtn', 'pdpSizePop']]);
+
+      initTabs([
+        ['pieces', `The pieces (${items.length})`, '<div class="look-grid" id="lookPieces"></div>'],
+        shipTab(),
+        careTab(WEAR_CARE),
+      ]);
+
+      const draw = () => {
+        const on = items.filter(x => x.on), total = on.reduce((a, x) => a + x.p.p, 0);
+
+        /* + Pieces: tick pieces in or out */
+        $('pdpColorPop').innerHTML = items.map((x, k) => `<button aria-pressed="${x.on}" data-k="${k}" data-toggle><img src="${IMG(x.p.img, 120)}" alt=""><span>${x.p.n}<small>${inr(x.p.p)}</small></span><b aria-hidden="true">${x.on ? '✓' : '+'}</b></button>`).join('');
+        $('pdpColorVal').textContent = `${on.length} of ${items.length}`;
+
+        /* + Age: one row per included piece that comes in ages */
+        if (sized.length) {
+          const need = on.filter(x => x.bands.length), chosen = need.filter(x => x.size);
+          $('pdpSizes').innerHTML = need.length ? need.map(x => `<div class="look-age${x.err ? ' err' : ''}"><p>${x.p.n}</p><div class="pdp-sizes" role="radiogroup" aria-label="Age for ${x.p.n}">${x.bands.map(s => `<button role="radio" aria-checked="${s === x.size}" data-k="${items.indexOf(x)}" data-s="${s}" ${x.avail.includes(s) ? '' : 'disabled aria-disabled="true"'}>${s}</button>`).join('')}</div></div>`).join('')
+            : '<p class="look-age-none">None of the pieces left need an age.</p>';
+          const one = [...new Set(chosen.map(x => x.size))];
+          $('pdpSizeVal').textContent = !need.length ? '—' : chosen.length === need.length && one.length === 1 ? one[0] : `${chosen.length} of ${need.length} chosen`;
+        }
+
+        /* price, buttons, sticky bar */
+        $('pdpPrice').textContent = inr(total);
+        $('pdpEmi').textContent = inr(Math.ceil(total / 3));
+        $('pdpBarPrice').textContent = `${on.length} ${on.length === 1 ? 'piece' : 'pieces'} · ${inr(total)}`;
+        $('pdpAdd').textContent = 'Add the look';
+        $('pdpBarAdd').textContent = 'Add the look';
+        $('pdpAdd').disabled = $('pdpBarAdd').disabled = !on.length;
+
+        /* "The pieces" tab */
+        $('lookPieces').innerHTML = items.map((x, k) => `
+          <article class="look-piece${x.on ? '' : ' off'}${x.err ? ' err' : ''}">
+            <a class="look-piece-img" href="${PDP(x.p)}" tabindex="-1" aria-hidden="true"><img loading="lazy" src="${IMG(x.p.img, 600)}" alt=""></a>
+            <h3><a href="${PDP(x.p)}">${x.p.n}</a></h3>
+            <p class="look-piece-price">${inr(x.p.p)}</p>
+            ${x.p.sw.length ? `<div class="look-colors" role="radiogroup" aria-label="Colour for ${x.p.n}">${x.p.sw.map(c => `<button role="radio" aria-checked="${c === x.color}" aria-label="${c}" data-k="${k}" data-c="${c}" ${x.on ? '' : 'disabled'}><i style="background:${COLORS[c]}"></i></button>`).join('')}<span>${x.color}</span></div>` : ''}
+            ${x.bands.length ? `<p class="look-guide"><span>Age</span><button class="link-u" data-guide="${k}">Size guide</button></p>
+            <div class="look-sizes" role="radiogroup" aria-label="Age for ${x.p.n}">${x.bands.map(s => `<button role="radio" aria-checked="${s === x.size}" data-k="${k}" data-s="${s}" ${x.on && x.avail.includes(s) ? '' : 'disabled'}>${s}</button>`).join('')}</div>` : ''}
+            <div class="look-links"><a class="link-u" href="${PDP(x.p)}">More information</a><button class="link-u" data-k="${k}" data-toggle>${x.on ? 'Remove' : 'Add back'}</button></div>
+          </article>`).join('');
+      };
+      draw();
+
+      /* one handler for the pickers and the pieces tab */
+      $('pdp').addEventListener('click', e => {
+        const g = e.target.closest('[data-guide]');
+        if (g) { $('sizeGuideBody').innerHTML = sizeGuideHTML(items[g.dataset.guide].p); openPanel('sizeGuide'); return; }
+        const b = e.target.closest('[data-k]'); if (!b || b.disabled) return;
+        const k = +b.dataset.k, x = items[k], box = b.closest('[id]').id;
+        if (b.dataset.s) { x.size = b.dataset.s; x.err = false; }
+        else if (b.dataset.c) x.color = b.dataset.c;
+        else { x.on = !x.on; x.err = false; }
+        if (!items.some(y => y.on && y.err)) { $('pdpErr').textContent = ''; $('pdpSizeWrap')?.classList.remove('err'); }
+        draw();
+        /* keep keyboard focus on the same control after redrawing */
+        const sel = b.dataset.s ? `[data-k="${k}"][data-s="${b.dataset.s}"]` : b.dataset.c ? `[data-k="${k}"][data-c="${b.dataset.c}"]` : `[data-k="${k}"][data-toggle]`;
+        $(box)?.querySelector(sel)?.focus();
+      });
+
+      /* every included piece that comes in ages needs one: otherwise open the age panel */
+      const add = () => {
+        const on = items.filter(x => x.on), miss = on.filter(x => x.bands.length && !x.size);
+        if (miss.length) {
+          miss.forEach(x => { x.err = true; }); draw();
+          const w = $('pdpSizeWrap');
+          $('pdpErr').textContent = miss.length === 1 ? `Please select an age for ${miss[0].p.n}` : `Please select an age for ${miss.length} pieces`;
+          w.classList.add('err'); w.classList.remove('shake'); void w.offsetWidth; w.classList.add('shake');
+          if (innerWidth <= 720) w.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          setTimeout(() => { if ($('pdpSizePop').hidden) pops.openPop('pdpSizeBtn', 'pdpSizePop'); });
+          return;
+        }
+        on.forEach(x => addToBag(x.i, x.size || 'One size'));
+        toast(`${L.n}: ${on.length} ${on.length === 1 ? 'piece' : 'pieces'} added to your bag`);
+        openPanel('cart');
+      };
+      $('pdpAdd').onclick = add;
+      $('pdpBarAdd').onclick = add;
+      initWish();
+
+      /* below: other looks from the same listing first, then products the look's pieces come from */
+      const others = LOOKS.filter(o => o !== L && (o.c === L.c || inCollection(o, L.c)));
+      const base = items[0] ? items[0].p.c : 'girl';
+      $('relEyebrow').textContent = others.length ? `More from ${COL.name}` : `More from ${COLLECTIONS[base].name}`;
+      $('rel-h').innerHTML = others.length ? 'Shop another <em>look</em>' : 'You may also <em>like</em>';
+      const prods = PRODUCTS.map((p, i) => ({ p, i })).filter(x => (x.p.c === base || (x.p.t || []).includes(base)) && !items.some(y => y.i === x.i));
+      renderRail([...others.map(o => ({ look: o })), ...prods].slice(0, 8));
+
+      observeBar($('pdpAdd'));
     }
 
     /* ----- related rail ----- */
@@ -4910,7 +5150,20 @@
     }
 
     /* ----- product card ----- */
-    function card({ p, i }) {
+    function card({ p, i, look }) {
+      /* a look in the rail: same card, opens the look */
+      if (look) return `
+    <article class="card card-look">
+      <div class="card-media">
+        ${look.b ? `<span class="badge${look.red ? ' red' : ''}">${look.b}</span>` : ''}
+        <img loading="lazy" src="${IMG(look.img, 700)}" alt="${look.n}">
+        <img loading="lazy" class="alt" src="${IMG(look.alt || look.img, 700)}" alt="">
+        <a class="card-link" href="${LOOK_URL(look)}" tabindex="-1" aria-hidden="true"></a>
+      </div>
+      <div class="card-info">
+        <h3><a href="${LOOK_URL(look)}">${look.n}</a></h3><p class="meta">The look · ${lookPieces(look).length} pieces</p><p class="price">${inr(lookPrice(look))}</p>
+      </div>
+    </article>`;
       return `
     <article class="card">
       <div class="card-media">
