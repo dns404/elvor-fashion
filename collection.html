@@ -4181,7 +4181,7 @@
       <label class="gift-wrap"><input type="checkbox" checked> Add complimentary gift wrapping & note</label>
       <div class="total"><span>Subtotal</span><b id="subtotal">₹0</b></div>
       <small>Inclusive of all taxes. Shipping calculated at checkout.</small>
-      <a href="#" class="btn btn-dark">Checkout securely</a>
+      <a href="cart.html" class="btn btn-dark">View bag &amp; checkout</a>
     </div>
   </aside>
 
@@ -4246,6 +4246,7 @@
 
   <script src="js/menu.js"></script>
   <script src="js/products.js"></script>
+  <script src="js/bag.js"></script>
   <script>
 
     /* header nav + mega menu: built by js/menu.js */
@@ -4440,10 +4441,11 @@
 
     /* ---------- cart ---------- */
     const FREE_SHIP = 1999;
-    let cart = [{ i: 0, q: 1, size: '3–6M' }];
+    let cart = loadBag(); /* shared with cart.html via js/bag.js */
     function renderCart() {
+      saveBag(cart);
       const n = cart.reduce((a, c) => a + c.q, 0), sub = cart.reduce((a, c) => a + c.q * PRODUCTS[c.i].p, 0);
-      document.getElementById('cartCount').textContent = n;
+      document.getElementById('cartCount').textContent = n + bagUnknownCount();
       document.getElementById('cartN').textContent = n;
       document.getElementById('subtotal').textContent = inr(sub);
       document.getElementById('cartFoot').style.display = n ? '' : 'none';
