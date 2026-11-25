@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Lexend+Exa:wght@300;400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Montserrat:wght@400;500&display=swap"
     rel="stylesheet">
   <style>
     /* Logo wordmark font — Cammron Serif (single weight; boldness added via text-stroke on .logo-word) */
@@ -3482,13 +3482,14 @@
 
     /* ---------- typography (Bonpoint-style) ----------
        Body: light geometric sans (Jost ≈ Brown) 300, 14px/20px, black.
-       Titles, labels, buttons: wide uppercase sans (Lexend Exa ≈ Sackers Gothic), tracked .075rem.
+       Titles, labels, buttons: wide uppercase sans (Montserrat 500 ≈ Sackers Gothic Medium), tracked .075rem.
        Secondary text: #757575. */
     :root {
       --ink: #000;
       --ink-soft: #757575;
       --muted: #757575;
-      --wide: 'Lexend Exa', 'Helvetica Neue', Arial, sans-serif
+      --line: #e5e5e5;
+      --wide: 'Montserrat', 'Helvetica Neue', Arial, sans-serif
     }
 
     body {
@@ -3506,7 +3507,7 @@
     .news h2,
     .empty .display {
       font-family: var(--wide);
-      font-weight: 400;
+      font-weight: 500;
       font-size: 20px;
       line-height: 26px;
       letter-spacing: .075rem;
@@ -3530,7 +3531,7 @@
     .slide-copy h1,
     .plp-hero-copy h1 {
       font-family: var(--wide);
-      font-weight: 400;
+      font-weight: 500;
       font-size: 35px;
       line-height: 41px;
       letter-spacing: .075rem;
@@ -3548,7 +3549,7 @@
     .gift-mini span,
     .stats b {
       font-family: var(--wide);
-      font-weight: 400;
+      font-weight: 500;
       font-size: 20px;
       line-height: 26px;
       letter-spacing: .075rem;
@@ -3561,7 +3562,7 @@
     .gift-tag,
     .btn {
       font-family: var(--wide);
-      font-weight: 400;
+      font-weight: 500;
       font-size: 10px;
       letter-spacing: .075rem;
       text-transform: uppercase
@@ -3573,7 +3574,6 @@
     }
 
     /* product names, prices, menu: regular body sans, sentence case */
-    .card-info h3,
     .line-item h4,
     .search-results a span,
     .search-field input,
@@ -3613,8 +3613,8 @@
       .news h2,
       .uni-copy h3,
       .gift-finder h3 {
-        font-size: 16px;
-        line-height: 22px
+        font-size: 20px;
+        line-height: 26px
       }
     }
 
@@ -3773,6 +3773,120 @@
         margin-bottom: 36px
       }
     }
+    /* buttons: 10px caps, 11px on desktop */
+    .btn {
+      line-height: 16px
+    }
+
+    @media (min-width:1024px) {
+      .btn {
+        font-size: 11px
+      }
+    }
+
+    /* product tiles: 12px/14px, name and price weight 400, colours #757575 */
+    .card-info h3,
+    .card-info .price {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14px;
+      letter-spacing: .025rem;
+      text-transform: none
+    }
+
+    .card-info .price {
+      margin-top: 4px
+    }
+
+    .card-info .meta {
+      font-size: 12px;
+      line-height: 14px;
+      letter-spacing: .025rem;
+      text-transform: none;
+      color: #757575
+    }
+
+    /* ---------- letter case (Bonpoint-style) ----------
+       Uppercase stays only on section/hero titles, buttons, underlined action links and drawer titles.
+       Menu, labels, tabs, badges, filters, footer and image-tile titles use the text as written (Title Case). */
+    .nav-link,
+    .mega h4,
+    .search-sugg h4,
+    .foot-col h4,
+    .cert h4,
+    .f-group h4,
+    .pdp-panel h3,
+    .lp-group-h,
+    .eyebrow,
+    .tab,
+    .auth-tabs button,
+    .pdp-tablist button,
+    .plp-filter-btn,
+    .plp-sort select,
+    .plp-subs button,
+    .news button {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: .025rem;
+      text-transform: none
+    }
+
+    .badge,
+    .pdp-badge,
+    .gift-tag,
+    .crumbs,
+    .field label,
+    .m-sub h5,
+    .m-sub .m-all,
+    .stats small,
+    .acc p,
+    .sg-table th,
+    .opt .free,
+    .uni-copy p {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: .025rem;
+      text-transform: none
+    }
+
+    /* titles on image tiles: 20px regular, as typed */
+    .uni-copy h3,
+    .plp-edit h3,
+    .mega-feature span,
+    .gift-mini span {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 26px;
+      letter-spacing: .025rem;
+      text-transform: none
+    }
+
+    /* header menu: a touch bolder */
+    .nav-link {
+      font-weight: 500
+    }
+
+    /* "Join the family" heading: Jost regular, as typed (matches the homepage) */
+    h2#news-h {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 26px;
+      line-height: 32px;
+      letter-spacing: .025rem;
+      text-transform: none
+    }
+
+    @media (max-width:720px) {
+      h2#news-h {
+        font-size: 22px;
+        line-height: 28px
+      }
+    }
+
     /* ---------- services strip above the footer (Bonpoint-style) ---------- */
     /* tighten the space between the last page section and the strip */
     main>section:not(.certs):has(+ .news) {

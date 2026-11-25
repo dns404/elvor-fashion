@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Lexend+Exa:wght@300;400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Montserrat:wght@400;500&display=swap"
     rel="stylesheet">
   <style>
     /* Logo wordmark font — Cammron Serif (single weight; boldness added via text-stroke on .logo-word) */
@@ -2952,13 +2952,21 @@
       padding-bottom: 3px
     }
 
-    /* New In banner sits between Gifts and Care & Accessories with the same 3px seams */
-    .new-in.wrap {
-      padding: 0 0 3px
+    /* Homepage rhythm: one full-width image, then a pair, alternating —
+       Hero / Boy + Girl / New Born / Special Edition + New In / Gifts / Care + Accessories.
+       The pair sits between New Born and Gifts with the same 3px seams. */
+    @media (min-width:721px) {
+      .universes {
+        grid-template-columns: repeat(2, 1fr)
+      }
     }
 
-    .new-in .uni.uni-wide {
-      margin-top: 0
+    .duo-section.wrap {
+      padding: 3px 0 0
+    }
+
+    .duo .uni {
+      aspect-ratio: 3/4
     }
 
     /* Care & Accessories tiles run straight into the cream Certifications band */
@@ -2992,13 +3000,14 @@
 
     /* ---------- typography (Bonpoint-style) ----------
        Body: light geometric sans (Jost ≈ Brown) 300, 14px/20px, black.
-       Titles, labels, buttons: wide uppercase sans (Lexend Exa ≈ Sackers Gothic), tracked .075rem.
+       Titles, labels, buttons: wide uppercase sans (Montserrat 500 ≈ Sackers Gothic Medium), tracked .075rem.
        Secondary text: #757575. */
     :root {
       --ink: #000;
       --ink-soft: #757575;
       --muted: #757575;
-      --wide: 'Lexend Exa', 'Helvetica Neue', Arial, sans-serif
+      --line: #e5e5e5;
+      --wide: 'Montserrat', 'Helvetica Neue', Arial, sans-serif
     }
 
     body {
@@ -3016,7 +3025,7 @@
     .news h2,
     .empty .display {
       font-family: var(--wide);
-      font-weight: 400;
+      font-weight: 500;
       font-size: 20px;
       line-height: 26px;
       letter-spacing: .075rem;
@@ -3040,7 +3049,7 @@
     .slide-copy h1,
     .plp-hero-copy h1 {
       font-family: var(--wide);
-      font-weight: 400;
+      font-weight: 500;
       font-size: 35px;
       line-height: 41px;
       letter-spacing: .075rem;
@@ -3058,7 +3067,7 @@
     .gift-mini span,
     .stats b {
       font-family: var(--wide);
-      font-weight: 400;
+      font-weight: 500;
       font-size: 20px;
       line-height: 26px;
       letter-spacing: .075rem;
@@ -3071,7 +3080,7 @@
     .gift-tag,
     .btn {
       font-family: var(--wide);
-      font-weight: 400;
+      font-weight: 500;
       font-size: 10px;
       letter-spacing: .075rem;
       text-transform: uppercase
@@ -3083,7 +3092,6 @@
     }
 
     /* product names, prices, menu: regular body sans, sentence case */
-    .card-info h3,
     .line-item h4,
     .search-results a span,
     .search-field input,
@@ -3123,8 +3131,249 @@
       .news h2,
       .uni-copy h3,
       .gift-finder h3 {
-        font-size: 16px;
-        line-height: 22px
+        font-size: 20px;
+        line-height: 26px
+      }
+    }
+
+    /* buttons: 10px caps, 11px on desktop */
+    .btn {
+      line-height: 16px
+    }
+
+    @media (min-width:1024px) {
+      .btn {
+        font-size: 11px
+      }
+    }
+
+    /* product tiles: 12px/14px, name and price weight 400, colours #757575 */
+    .card-info h3,
+    .card-info .price {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 14px;
+      letter-spacing: .025rem;
+      text-transform: none
+    }
+
+    .card-info .price {
+      margin-top: 4px
+    }
+
+    .card-info .meta {
+      font-size: 12px;
+      line-height: 14px;
+      letter-spacing: .025rem;
+      text-transform: none;
+      color: #757575
+    }
+
+    /* ---------- letter case (Bonpoint-style) ----------
+       Uppercase stays only on section/hero titles, buttons, underlined action links and drawer titles.
+       Menu, labels, tabs, badges, filters, footer and image-tile titles use the text as written (Title Case). */
+    .nav-link,
+    .mega h4,
+    .search-sugg h4,
+    .foot-col h4,
+    .cert h4,
+    .f-group h4,
+    .pdp-panel h3,
+    .lp-group-h,
+    .eyebrow,
+    .tab,
+    .auth-tabs button,
+    .pdp-tablist button,
+    .plp-filter-btn,
+    .plp-sort select,
+    .plp-subs button,
+    .news button {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: .025rem;
+      text-transform: none
+    }
+
+    .badge,
+    .pdp-badge,
+    .gift-tag,
+    .crumbs,
+    .field label,
+    .m-sub h5,
+    .m-sub .m-all,
+    .stats small,
+    .acc p,
+    .sg-table th,
+    .opt .free,
+    .uni-copy p {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: .025rem;
+      text-transform: none
+    }
+
+    /* titles on image tiles: 20px regular, as typed */
+    .uni-copy h3,
+    .plp-edit h3,
+    .mega-feature span,
+    .gift-mini span {
+      font-family: var(--sans);
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 26px;
+      letter-spacing: .025rem;
+      text-transform: none
+    }
+
+    /* header menu: a touch bolder */
+    .nav-link {
+      font-weight: 500
+    }
+
+    /* ---------- links on images (Bonpoint-style) ----------
+       Hero category links sit in a solid white strip with thin grey dividers;
+       image tiles carry a white label. Black regular text, underline on hover. */
+    .slide-copy .ctas {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px 0;
+      background: #fff;
+      padding: 16px 12px 14px
+    }
+
+    .slide-copy .ctas .btn {
+      position: relative;
+      height: auto;
+      padding: 0 20px;
+      border: 0;
+      background: none;
+      color: #000;
+      font-family: var(--wide);
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: .075rem;
+      text-transform: uppercase
+    }
+
+    .slide-copy .ctas .btn+.btn::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 1px;
+      height: 10px;
+      margin-top: -5px;
+      background: #757575
+    }
+
+    .slide-copy .ctas .btn:hover {
+      color: #000;
+      background: none;
+      opacity: 1;
+      text-decoration: underline;
+      text-underline-offset: 4px
+    }
+
+    /* hero title and the Universes heading: regular body font, as typed (not caps) */
+    .slide-copy h1.display,
+    .sec-head h2#uni-h,
+    .sec-head h2#cert-h,
+    h2#news-h {
+      font-family: var(--sans);
+      font-weight: 400;
+      letter-spacing: .025rem;
+      text-transform: none
+    }
+
+    .slide-copy h1.display {
+      font-size: 42px;
+      line-height: 50px
+    }
+
+    .sec-head h2#uni-h,
+    .sec-head h2#cert-h,
+    h2#news-h {
+      font-size: 26px;
+      line-height: 32px
+    }
+
+    @media (max-width:720px) {
+      .slide-copy h1.display {
+        font-size: 30px;
+        line-height: 36px
+      }
+
+      .sec-head h2#uni-h,
+      .sec-head h2#cert-h,
+      h2#news-h {
+        font-size: 22px;
+        line-height: 28px
+      }
+    }
+
+    /* white label on image tiles; no dark gradient needed behind it */
+    .uni::after {
+      display: none
+    }
+
+    .uni-copy {
+      bottom: 24px
+    }
+
+    .uni-copy h3 {
+      display: inline-block;
+      background: #fff;
+      color: #000;
+      padding: 14px 28px 12px;
+      font-family: var(--wide);
+      font-weight: 500;
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: .075rem;
+      text-transform: uppercase
+    }
+
+    .uni:hover .uni-copy h3 {
+      text-decoration: underline;
+      text-underline-offset: 4px
+    }
+
+    /* gift finder links over the gift image: white buttons */
+    @media (min-width:1025px) {
+      .gift-finder a {
+        background: #fff;
+        border-color: #fff;
+        color: #000;
+        text-shadow: none;
+        font-family: var(--wide);
+        font-weight: 500;
+        font-size: 11px;
+        letter-spacing: .075rem;
+        text-transform: uppercase
+      }
+
+      .gift-finder a:hover {
+        background: #fff;
+        border-color: #fff;
+        text-decoration: underline;
+        text-underline-offset: 4px
+      }
+    }
+
+    @media (max-width:720px) {
+      .slide-copy .ctas {
+        padding: 12px 6px 10px
+      }
+
+      .slide-copy .ctas .btn {
+        padding: 0 7px;
+        font-size: 9px;
+        letter-spacing: .05rem
       }
     }
 
@@ -3311,7 +3560,7 @@
         </div>
         <a href="collection.html?c=special" class="slide-link" aria-label="Shop the Elvor Special Edition"></a>
         <div class="slide-copy">
-          <h1 class="display">Elvor <em>special edition</em></h1>
+          <h1 class="display">Elvor <em>Special Edition</em></h1>
           <nav class="ctas" aria-label="Shop by category">
             <a href="collection.html?c=newborn" class="btn btn-light">New Born</a>
             <a href="collection.html?c=girl" class="btn btn-light">Girl</a>
@@ -3323,7 +3572,7 @@
       </div>
     </section>
 
-    <!-- ===== Universes: Boy / Girl / Elvor Special Edition ===== -->
+    <!-- ===== Universes: Boy / Girl pair, then full-width New Born ===== -->
     <section class="section uni-section wrap" aria-labelledby="uni-h">
       <div class="sec-head reveal">
         <p class="eyebrow">The Universes</p>
@@ -3334,7 +3583,6 @@
             alt="Boy in a light blue oxford shirt and navy corduroy trousers" style="object-position:center 20%">
           <div class="uni-copy">
             <h3>Boy</h3>
-            <p>1 – 6 years</p>
           </div>
         </a>
         <a href="collection.html?c=girl" class="uni reveal"><img loading="lazy" src="images/web/girl-velvet-portrait.jpg"
@@ -3342,14 +3590,6 @@
             style="object-position:52% center">
           <div class="uni-copy">
             <h3>Girl</h3>
-            <p>1 – 6 years</p>
-          </div>
-        </a>
-        <a href="collection.html?c=special" class="uni reveal"><img loading="lazy" src="images/web/boy-red-panda-sweater.jpg"
-            alt="Cream knit sweater with an embroidered red panda in a varsity jacket">
-          <div class="uni-copy">
-            <h3>Elvor Special Edition</h3>
-            <p>2027 collection</p>
           </div>
         </a>
       </div>
@@ -3357,9 +3597,26 @@
           alt="Three toddlers laughing and playing with wooden toys on a rug" style="object-position:center 65%">
         <div class="uni-copy">
           <h3>New Born</h3>
-          <p>0 – 12 months</p>
         </div>
       </a>
+    </section>
+
+    <!-- ===== Pair: Elvor Special Edition / New In ===== -->
+    <section class="section duo-section wrap" aria-label="Special edition and new in">
+      <div class="care-acc-grid duo">
+        <a href="collection.html?c=special" class="uni reveal"><img loading="lazy" src="images/web/boy-red-panda-sweater.jpg"
+            alt="Cream knit sweater with an embroidered red panda in a varsity jacket">
+          <div class="uni-copy">
+            <h3>Elvor Special Edition</h3>
+          </div>
+        </a>
+        <a href="collection.html?sort=new" class="uni reveal"><img loading="lazy" src="images/web/girl-velvet-portrait.jpg"
+            alt="Girl in a black velvet dress with a lace collar by a farmhouse stone wall" style="object-position:center 30%">
+          <div class="uni-copy">
+            <h3>New In</h3>
+          </div>
+        </a>
+      </div>
     </section>
 
     <!-- ===== Gifts ===== -->
@@ -3383,17 +3640,6 @@
       </div>
     </section>
 
-    <!-- ===== New in: full-width landscape banner (same as New Born) ===== -->
-    <section class="section new-in wrap" aria-label="New in">
-      <a href="collection.html?sort=new" class="uni uni-wide reveal"><img loading="lazy" src="images/web/girl-velvet-portrait.jpg"
-          alt="Girl in a black velvet dress with a lace collar by a farmhouse stone wall" style="object-position:center 30%">
-        <div class="uni-copy">
-          <h3>New In</h3>
-          <p>Just arrived</p>
-        </div>
-      </a>
-    </section>
-
     <!-- ===== Care & Accessories ===== -->
     <section class="section care-acc wrap" id="care-h" aria-label="Care and accessories">
       <div class="care-acc-grid">
@@ -3402,14 +3648,12 @@
             style="object-position:35% center">
           <div class="uni-copy">
             <h3>Care</h3>
-            <p>Bath &amp; body</p>
           </div>
         </a>
         <a href="collection.html?c=accessories" class="uni reveal"><img loading="lazy" src="images/web/accessories-beanie-knitwear.jpg"
             alt="Knitted blanket, beanie, socks and mittens hanging on a washing line">
           <div class="uni-copy">
             <h3>Accessories</h3>
-            <p>Knitwear &amp; essentials</p>
           </div>
         </a>
       </div>
