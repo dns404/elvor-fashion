@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Montserrat:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
     rel="stylesheet">
   <style>
     /* Logo wordmark font — Cammron Serif (single weight; boldness added via text-stroke on .logo-word) */
@@ -1405,7 +1405,7 @@
 
     /* ---------- certifications ---------- */
     .certs {
-      background: var(--cream);
+      background: white;
       text-align: center
     }
 
@@ -3284,7 +3284,7 @@
     .sec-head h2#uni-h,
     .sec-head h2#cert-h,
     h2#news-h {
-      font-family: var(--sans);
+      font-family: var(--wide);
       font-weight: 400;
       letter-spacing: .025rem;
       text-transform: none
@@ -3460,6 +3460,15 @@
         font-size: 13px
       }
     }
+
+    /* ---------- Montserrat everywhere (logo wordmark keeps Cammron Serif) ----------
+       All text, header included, uses Montserrat. */
+    :root {
+      --sans: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --serif: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --wide: 'Montserrat', 'Helvetica Neue', Arial, sans-serif
+    }
+
   </style>
 </head>
 
@@ -3562,11 +3571,9 @@
         <div class="slide-copy">
           <h1 class="display">Elvor <em>Special Edition</em></h1>
           <nav class="ctas" aria-label="Shop by category">
-            <a href="collection.html?c=newborn" class="btn btn-light">New Born</a>
+            <a href="collection.html?c=newborn" class="btn btn-light">New Born & Baby</a>
             <a href="collection.html?c=girl" class="btn btn-light">Girl</a>
             <a href="collection.html?c=boy" class="btn btn-light">Boy</a>
-            <a href="#care-h" class="btn btn-light">Care &amp; Accessories</a>
-            <a href="collection.html?c=gifts" class="btn btn-light">Gift</a>
           </nav>
         </div>
       </div>
@@ -3672,7 +3679,7 @@
             <circle cx="50" cy="50" r="46" />
             <circle cx="50" cy="50" r="38" stroke-dasharray="2 3" />
             <path d="M50 30c-10 8-12 18-6 28 4 6 10 6 12 0 4-10 2-20-6-28Z" />
-            <path d="M50 30v40" /><text x="50" y="82" text-anchor="middle" font-family="Jost,sans-serif" font-size="10"
+            <path d="M50 30v40" /><text x="50" y="82" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10"
               letter-spacing="2" fill="currentColor" stroke="none">GOTS</text>
           </svg>
           <h4>GOTS Organic</h4>
@@ -3681,11 +3688,11 @@
         <div class="cert">
           <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
             <rect x="8" y="22" width="84" height="56" rx="4" />
-            <path d="M8 40h84" /><text x="50" y="35" text-anchor="middle" font-family="Jost,sans-serif" font-size="9"
+            <path d="M8 40h84" /><text x="50" y="35" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="9"
               letter-spacing="1.5" fill="currentColor" stroke="none">OEKO-TEX®</text><text x="50" y="58"
-              text-anchor="middle" font-family="Jost,sans-serif" font-size="8" letter-spacing="1" fill="currentColor"
+              text-anchor="middle" font-family="Montserrat,sans-serif" font-size="8" letter-spacing="1" fill="currentColor"
               stroke="none">STANDARD</text><text x="50" y="71" text-anchor="middle"
-              font-family="Cormorant Garamond,serif" font-size="13" fill="currentColor" stroke="none">100</text>
+              font-family="Montserrat,sans-serif" font-size="13" fill="currentColor" stroke="none">100</text>
           </svg>
           <h4>OEKO-TEX® 100</h4>
           <p>Tested for harmful substances, Class I (baby)</p>
@@ -3702,7 +3709,7 @@
           <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
             <circle cx="50" cy="50" r="46" />
             <path d="M38 34c0-6 24-6 24 0v6H38zM34 40h32l-4 32H38z" />
-            <path d="M28 28 72 72" /><text x="50" y="90" text-anchor="middle" font-family="Jost,sans-serif"
+            <path d="M28 28 72 72" /><text x="50" y="90" text-anchor="middle" font-family="Montserrat,sans-serif"
               font-size="7" letter-spacing="1.5" fill="currentColor" stroke="none">AZO-FREE</text>
           </svg>
           <h4>Azo-Free Dyes</h4>
@@ -3726,9 +3733,9 @@
             <circle cx="50" cy="50" r="14" />
             <g stroke-width=".8">
               <path d="M50 36v28M36 50h28M40 40l20 20M60 40 40 60" />
-            </g><text x="50" y="22" text-anchor="middle" font-family="Jost,sans-serif" font-size="7"
+            </g><text x="50" y="22" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="7"
               letter-spacing="1.5" fill="currentColor" stroke="none">MADE IN</text><text x="50" y="84"
-              text-anchor="middle" font-family="Jost,sans-serif" font-size="7" letter-spacing="1.5" fill="currentColor"
+              text-anchor="middle" font-family="Montserrat,sans-serif" font-size="7" letter-spacing="1.5" fill="currentColor"
               stroke="none">INDIA</text>
           </svg>
           <h4>Made in India</h4>

@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&family=Montserrat:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap"
     rel="stylesheet">
   <style>
     /* Logo wordmark font — Cammron Serif (single weight; boldness added via text-stroke on .logo-word) */
@@ -3147,7 +3147,7 @@
 
     .plp-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 40px 20px;
       padding-top: 28px
     }
@@ -3712,7 +3712,7 @@
     }
 
     .plp-grid {
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 0 3px;
       padding-top: clamp(24px, 3vw, 48px)
     }
@@ -3872,6 +3872,89 @@
     @media (hover:none) {
       .card-sizes {
         display: none
+      }
+    }
+
+    /* ---------- collection grid (inset 3-up) ----------
+       grid sits inside the page gutter with 1px seams, taller 4:5 images,
+       name left-aligned with the wishlist heart on the right and price beneath */
+    .plp-body.wrap {
+      padding-inline: var(--gutter)
+    }
+
+    .plp-active,
+    .plp-more,
+    .plp-empty {
+      padding-inline: 0
+    }
+
+    .plp-bar-row {
+      justify-content: flex-end
+    }
+
+    .plp-grid {
+      gap: 0 1px
+    }
+
+    .plp-grid .card-media {
+      aspect-ratio: 4/5
+    }
+
+    .plp-grid .card-info {
+      text-align: left;
+      padding: 22px 56px 48px 20px
+    }
+
+    .plp-grid .card-info h3 {
+      font-family: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 20px;
+      line-height: 26px
+    }
+
+    .plp-grid .card-info .price {
+      margin-top: 6px;
+      font-size: 12px;
+      line-height: 16px;
+      color: #000
+    }
+
+    .plp-grid .card-info .wish {
+      top: 16px;
+      right: 14px
+    }
+
+    .plp-grid .card-info .wish svg {
+      width: 22px;
+      height: 22px;
+      stroke-width: 1.4
+    }
+
+    .plp-grid .card-sizes {
+      top: 26px;
+      left: 20px;
+      right: 56px;
+      padding: 0;
+      justify-content: flex-start
+    }
+
+    @media (max-width:720px) {
+      .plp-grid .card-info {
+        padding: 14px 40px 32px 10px
+      }
+
+      .plp-grid .card-info h3 {
+        font-size: 15px;
+        line-height: 20px
+      }
+
+      .plp-grid .card-info .wish {
+        top: 6px;
+        right: 2px
+      }
+
+      .plp-grid .card-info .wish svg {
+        width: 18px;
+        height: 18px
       }
     }
 
@@ -4038,6 +4121,15 @@
         font-size: 13px
       }
     }
+
+    /* ---------- Montserrat everywhere (logo wordmark keeps Cammron Serif) ----------
+       All text, header included, uses Montserrat. */
+    :root {
+      --sans: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --serif: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      --wide: 'Montserrat', 'Helvetica Neue', Arial, sans-serif
+    }
+
   </style>
 </head>
 
@@ -4531,12 +4623,12 @@
     <article class="card card-look">
       <div class="card-media">
         ${p.b ? `<span class="badge${p.red ? ' red' : ''}">${p.b}</span>` : ''}
-        <button class="wish" aria-label="Add ${p.n} to wishlist"><svg><use href="#i-heart"/></svg></button>
         <img loading="lazy" src="${IMG(p.img, 800)}" alt="${p.n}">
         <img loading="lazy" class="alt" src="${IMG(p.alt, 800)}" alt="">
         <a class="card-link" href="${LOOK_URL(L)}" tabindex="-1" aria-hidden="true"></a>
       </div>
       <div class="card-info">
+        <button class="wish" aria-label="Add ${p.n} to wishlist"><svg><use href="#i-heart"/></svg></button>
         <h3><a href="${LOOK_URL(L)}">${p.n}</a></h3><p class="price">${lookPieces(L).length} pieces · ${inr(p.p)}</p>
       </div>
     </article>`;
@@ -4547,12 +4639,12 @@
     <article class="card">
       <div class="card-media">
         ${p.b ? `<span class="badge${p.red ? ' red' : ''}">${p.b}</span>` : ''}
-        <button class="wish" aria-label="Add ${p.n} to wishlist"><svg><use href="#i-heart"/></svg></button>
         <img loading="lazy" src="${IMG(p.img, 800)}" alt="${p.n}">
         <img loading="lazy" class="alt" src="${IMG(p.alt, 800)}" alt="">
         <a class="card-link" href="${PDP(p)}" tabindex="-1" aria-hidden="true"></a>
       </div>
       <div class="card-info">
+        <button class="wish" aria-label="Add ${p.n} to wishlist"><svg><use href="#i-heart"/></svg></button>
         <h3><a href="${PDP(p)}">${p.n}</a></h3><p class="price">${inr(p.p)}</p>
         <div class="card-sizes">${sz.length
           ? sz.map(s => `<button data-add="${i}" data-size="${s}" aria-label="Add ${p.n}, size ${s}, to bag">${s}</button>`).join('')
